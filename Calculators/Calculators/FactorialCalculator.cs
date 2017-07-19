@@ -11,13 +11,21 @@ namespace Calculators
         public int CalculateFactorial(int num)
         {
             int CalcResult = num;
-            if (num <= 0)
+            if (num == 0)
             {
                 return 0;
             }
-            if (num > 32768)
+            if (num < 0)
             {
                 return -1;
+            }
+            if (num > 15)
+            {
+                return -3;
+            }
+            if (num > 12)
+            {
+                return -2;
             }
             for (int i=num-1; i>0;i--)
             {
