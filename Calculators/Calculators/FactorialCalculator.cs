@@ -8,9 +8,9 @@ namespace Calculators
 {
     public class FactorialCalculator
     {
-        public int CalculateFactorial(int num)
+        public long CalculateFactorial(int num)
         {
-            int CalcResult = num;
+            long CalcResult = num;
             if (num == 0)
             {
                 return 0;
@@ -22,10 +22,6 @@ namespace Calculators
             if (num > 15)
             {
                 return -3;
-            }
-            if (num > 12)
-            {
-                return -2;
             }
             for (int i=num-1; i>1;i--)
             {

@@ -1,0 +1,208 @@
+!!!Webview Instructions - New or Changed .jsp files
+This is intended as a cookbook approach to creating/modifying webview components, and is targeted at the support programmer for whom webview is just one part of his/her workload. Feel free to edit this page.
+
+
+Each xml has at least 5 corresponding files in webview:
+*	Screen.jsp
+*	ScreenBean.java
+*	ScreenSend.java
+*	ScreenSendTarget.java
+*	ScreenTabSend.java
+
+If the .jsp is especially large, the options will be broken out into separate .jsp files – ScreenOption1.jsp, ScreenOption2.jsp and so on. These will be included in the main .jsp In this case the option jsps will used the same java files as above.
+
+There are also the .xml files which need to be changed for all new screens:
+*	transitions.xml
+*	viewmanager.xml
+*	states.xml
+*	modelmanager.xml
+*	commandmanager.xml
+
+Existing .jsp files will require changes to the .java files if there are new fields, renamed fields or deleted fields, or fields that change type (eg number to text).
+
+
+!!Screen.jsp
+Found in WebViewWeb/webApplication/jsp/m__9999__ where __9999__ is the module number of the relevant program. It defines the layout of the Webview screen equivalent.
+
+Base the design of this on the Winview layout, not the green screen. Every literal, soft literal, output field or input field must be included on the JSP.
+
+
+You will also need to modify  ScreenBean.java, ScreenSendTarget.java for every field.
+For input fields you will also need to modify ScreenTabSend.java
+
+!!ScreenBean.java
+Found in WebviewApp/com.Mincom.ellipse.app.m__9999__.modelbean where 9999 is the module number of the relevant program. It defines the getters and setters for every field used in Screen.jsp.
+
+
+!1.	Literal – eg _LIT7001
+*	In public class ScreenBean	__insert__
+    private String Lit7001i;\\
+*	In the same class insert a getter and setter function
+	public String getLit7001i() {\\
+		if (Lit7001i  == null) {\\
+			return EllipseConstants.BLANK_STRING;\\
+		} else {\\
+			 return Lit7001i;\\
+		}\\
+	}\\
+	public void setLit7001i(String newValue) {\\
+		Lit7001i = newValue;\\
+	}\\
+*	In  public void update(EllipseMsoCommand cmd) insert 
+  if ((cmd.getOutputParameter("_LIT7001I_Out") == null)) {\\
+	setLit7001i(EllipseConstants.BLANK_STRING);\\
+  } else {\\
+	setLit7001i((String) \\
+		cmd.getOutputParameter("_LIT7001I_Out"));\\
+  }\\
+
+!2.	Soft Literal – eg ACTION_LIT1
+*	In public class ScreenBean	__insert__
+  private MsoField actionLit1i;\\
+*	In the same class insert a getter and setter function
+  public MsoField getActionLit1i() {\\
+	return ensureMsoFieldNotNull(actionLit1i);\\
+  }\\
+  private void setActionLit1i(MsoField newValue) {\\
+	actionLit1i = newValue;\\
+  }\\
+*	In  public void update(EllipseMsoCommand cmd) __insert __
+  setActionLit1i((MsoField) \\
+	cmd.getOutputParameter("ACTION_LIT1I_Out"));\\
+
+
+!3.	Output Field – eg ASSET_DESC1
+*	In public class ScreenBean	__insert__
+  private MsoField assetDesc1i;\\
+*	In the same class insert a getter and setter function
+  public MsoField getAssetDesc1i() {\\
+ 	return ensureMsoFieldNotNull(assetDesc1i);\\
+  }\\
+  private void setAssetDesc1i(MsoField newValue) {\\
+ 	assetDesc1i = newValue;\\
+  }\\
+*	In  public void update(EllipseMsoCommand cmd) __insert__
+  setAssetDesc1i((MsoField)\\
+	 cmd.getOutputParameter("ASSET_DESC1I_Out"));\\
+
+!4.	Input Field – eg ASSET_NO1
+*	In public class ScreenBean	__insert__
+  private MsoField assetNo1i;\\
+*	In the same class insert a getter and setter function
+  public MsoField getAssetNo1i() {\\
+	return ensureMsoFieldNotNull(assetNo1i);\\
+  }\\
+  private void setAssetNo1i(MsoField newValue) {\\
+	assetNo1i = newValue;\\
+  }\\
+*	In  public void update(EllipseMsoCommand cmd) __insert__ 
+  setAssetNo1i((MsoField) cmd.getOutputParameter("ASSET_NO1I_Out"));\\
+*	In public void update(Msm68baTabSend cmd)  __insert__
+    setFieldValueFromInputParameter(\\
+        getAssetNo1i(), cmd, "ASSET_NO1I");\\
+
+
+!!ScreenSend.java
+Found in WebviewApp/com.Mincom.ellipse.app.m__9999__.command where __9999__ is the module number of the relevant program. 
+
+This is created for a new screen, and should never need to be changed for screen changes.
+
+*	Copy an existing one from the same module, and rename it.
+*	Then change the following lines to the appropriate screen name
+
+  public class Msm68baSend extends SendCommand {\\
+	public Msm68baSend() {\\
+		super();\\
+	addInputParameter("screenCommand", String.class, true);\\
+		setMapName("MSM68BA");\\
+	addInputParameter("Msm68baBean", Msm68baBean.class, true);\\
+	}\\
+
+
+!!ScreenSendTarget.java
+Found in WebviewApp/com.Mincom.ellipse.app.m__9999__.command.target where __9999__ is the module number of the relevant program. It contains setters for all the output and input fields on the underlying green screen.
+
+
+!1.	Literal – eg _LIT7001
+*	In public static void updateCommand(		__insert__
+  cmd.setNewOutputParameter(\\
+	"_LIT7001I_Out", String.class,\\
+	screen.getField("_LIT7001I").getValue(), false);\\
+
+
+!2.	Soft Literal – eg ACTION_LIT1
+*	In public static void updateCommand(		__insert__
+  cmd.setNewOutputParameter(\\
+	"ACTION_LIT1I_Out", MsoField.class,\\
+	(MsoField) screen.getField("ACTION_LIT1I").clone(), \\
+		false);\\
+
+!3.	Output Field – eg ASSET_DESC1
+*	In public static void updateCommand(		__insert__
+  cmd.setNewOutputParameter(\\
+	"ASSET_DESC1I_Out", MsoField.class,\\
+	(MsoField) screen.getField("ASSET_DESC1I").clone(), \\
+		false);\\
+
+!4.	Input Field – eg ASSET_NO1
+*	In public static void updateCommand(		__insert__
+  cmd.setNewOutputParameter(\\
+	"ASSET_NO1I_Out", MsoField.class,\\
+	(MsoField) screen.getField("ASSET_NO1I").clone(), \\
+		false);\\
+*	In protected void setScreenFields(              __insert__
+  screen.setFieldValue(\\
+	"ASSET_NO1I",\\
+	((Msm68baBean) \\
+	cmd.getInputParameter("Msm68baBean")).getAssetNo1i()\\
+		.getValue(), cmd.getLocale());\\
+
+
+!!ScreenTabSend.java
+Found in WebviewApp/com.Mincom.ellipse.app.m__9999__.command where __9999__ is the module number of the relevant program. It contains getters for all the input fields on the underlying green screen.
+
+
+!1.	Input Field – eg ASSET_NO1
+*	In public Msm68baTabSend()                     __insert__
+  addInputParameter("ASSET_NO1I", String.class, false);\\
+*	Below this function, but within  public class Msm68baTabSend  __insert__
+  public String getAssetNo1i() {\\
+	return (String) getInputParameter("ASSET_NO1I");\\
+  }\\
+
+!!transitions.xml
+Found in WebViewWeb/webApplication/WEB-INF. It defines the transitions of the underlying green screen.
+
+!Example (for Msm68ba)
+[file://///itchy/mims/Product Development/PD91007 - WebView Deployment Infrastructure/Support/WebviewCookbook/Transitions.png]
+
+
+
+!!viewmanager.xml
+Found in WebViewWeb/webApplication/WEB-INF. It defines the .jsp of the view name.
+
+!Example (for Msm68ba)
+
+[file://///itchy/mims/Product Development/PD91007 - WebView Deployment Infrastructure/Support/WebviewCookbook/ViewManager.png]
+
+!!states.xml
+Found in WebViewWeb/webApplication/WEB-INF. It defines the valid state of the view name.
+
+!Example (for Msm68ba)
+[file://///itchy/mims/Product Development/PD91007 - WebView Deployment Infrastructure/Support/WebviewCookbook/States.png]
+
+
+!!modelmanager.xml
+Found in WebViewWeb/webApplication/WEB-INF. It defines the model bean of the view name.
+
+!Example (for Msm68ba)
+[file://///itchy/mims/Product Development/PD91007 - WebView Deployment Infrastructure/Support/WebviewCookbook/Modelmanager.png]
+
+
+!!commandmanager.xml
+Found in WebViewWeb/webApplication/WEB-INF. It defines the commands of the view name.
+
+!Example (for Msm68ba)
+[file://///itchy/mims/Product Development/PD91007 - WebView Deployment Infrastructure/Support/WebviewCookbook/CommandManager.png]
+
+

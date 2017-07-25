@@ -24,9 +24,10 @@ namespace Calculators.Tests
             Assert.AreEqual(3628800, Fred.CalculateFactorial(10));
             Assert.AreEqual(39916800, Fred.CalculateFactorial(11));
             Assert.AreEqual(479001600, Fred.CalculateFactorial(12));
-            Assert.AreNotEqual(6227020800, Fred.CalculateFactorial(13));
-            Assert.AreNotEqual(87178291200, Fred.CalculateFactorial(14));
-            Assert.AreEqual(-2, Fred.CalculateFactorial(15));
+            Assert.AreEqual(6227020800, Fred.CalculateFactorial(13));
+            Assert.AreEqual(87178291200, Fred.CalculateFactorial(14));
+            Assert.AreEqual(-7, Fred.CalculateFactorial(15));
+            Assert.AreEqual(-3, Fred.CalculateFactorial(16));
             Assert.AreEqual(-3, Fred.CalculateFactorial(256));
 
         }
