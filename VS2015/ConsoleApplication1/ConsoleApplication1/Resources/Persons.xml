@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Persons>
+  <Person>
+    <PersonNumber>1</PersonNumber>
+    <Name>Sam Novak</Name>
+    <Current>Yes</Current>
+    <Phone type="Main">303-555-8173</Phone>
+    <Phone type="Alt">303-555-8194</Phone>
+    <Address>
+      <Street>472 barcel Ct.</Street>
+      <City>Northglenn</City>
+      <State>WA</State>
+      <Zip>6050</Zip>
+      <Country>Australia</Country>
+    </Address>
+  </Person>
+  <Person>
+    <PersonNumber>2</PersonNumber>
+    <Name>Fafnir Bloodax</Name>
+    <Current>Yes</Current>
+    <Phone type="Main">311-666-8173</Phone>
+    <Phone type="Alt">311-666-8194</Phone>
+    <Address>
+      <Street>21 Ice st.</Street>
+      <City>Snow Central</City>
+      <State>Tas</State>
+      <Zip>8050</Zip>
+      <Country>Australia</Country>
+    </Address>
+  </Person>
+  <Person>
+    <PersonNumber>3</PersonNumber>
+    <Name>Apollo Lukeios</Name>
+    <Current>Yes</Current>
+    <Phone type="Main">101-202-8173</Phone>
+    <Phone type="Alt">101-202-8194</Phone>
+    <Address>
+      <Street>7 Windamere St</Street>
+      <City>Stone Haven</City>
+      <State>SA</State>
+      <Zip>5050</Zip>
+      <Country>Australia</Country>
+    </Address>
+  </Person>
+  <Person>
+    <PersonNumber>4</PersonNumber>
+    <Name>George Vrykolakas</Name>
+    <Current>Yes</Current>
+    <Phone type="Main">413-555-8173</Phone>
+    <Phone type="Alt">413-555-8194</Phone>
+    <Address>
+      <Street>47 Main St.</Street>
+      <City>Underhill</City>
+      <State>NZ</State>
+      <Zip>9050</Zip>
+      <Country>Britain</Country>
+    </Address>
+  </Person>
+</Persons>

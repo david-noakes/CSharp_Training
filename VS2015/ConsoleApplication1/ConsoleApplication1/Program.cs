@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ConsoleApplication1
 {
@@ -11,7 +12,9 @@ namespace ConsoleApplication1
         static void Main(string[] args)
         {
             Program p = new Program();
-            p.runSomeQueries();
+            //p.runSomeQueries();
+            p.runStoredProcedure();
+            p.Linq2Xml_readAll();
 
             Console.WriteLine("*** DONE ***");
             Console.ReadLine();
@@ -70,8 +73,16 @@ namespace ConsoleApplication1
             // note the foreach enumerates the query
             foreach (var ordDTO in qryOrders2)
             {
-                Console.WriteLine("Order ID {0} was shipped to {1} @ {2} on {3}", ordDTO.iD, ordDTO.whoBoughtIt,
-                    ordDTO.whereItWent, ordDTO.whenShipped.ToShortDateString());
+                try
+                {
+                    Console.WriteLine("Order ID {0} was shipped to {1} @ {2} on {3}", ordDTO.iD, ordDTO.whoBoughtIt,
+                        ordDTO.whereItWent, ordDTO.whenShipped.ToShortDateString());
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error {0}", ex.Message);
+                }
             }
 
             Console.WriteLine("** press enter **");
@@ -109,5 +120,99 @@ namespace ConsoleApplication1
 
         }
 
+        void runStoredProcedure()
+        {
+            NorthwindEntities nwEntities = new NorthwindEntities();
+            // call the CustOrderHist stored procedure
+            var qryOrdHist = from ohRow in nwEntities.CustOrderHist("ALFKI") select ohRow;
+
+            Console.WriteLine("** press enter **");
+            Console.ReadLine();
+
+            Console.WriteLine();
+            // set up heading
+            Console.WriteLine("Product Name {0, -27} Total", "");
+            Console.WriteLine("-".PadRight(70, '-'));
+
+            foreach (var ohDTO in qryOrdHist)
+            {
+                Console.WriteLine("{0,-40} {1,7:C}", ohDTO.ProductName, ohDTO.Total);
+            }
+        }
+        void Linq2Xml_readAll()
+        {
+            Console.WriteLine("** press enter **");
+            Console.ReadLine();
+            //XElement xElement = XElement.Load("Resources/Persons.xml");
+            XElement xElement = XElement.Load("C:\\Data\\Source\\Repos\\CSharp_Training\\VS2015\\ConsoleApplication1\\ConsoleApplication1\\Resources\\Persons.xml");
+            IEnumerable<XElement> personList = xElement.Elements();
+            //Read all
+            foreach (var personDTO in personList)
+            {
+                Console.WriteLine(personDTO);
+            }
+            Console.WriteLine("** press enter **");
+            Console.ReadLine();
+            //Read all
+            foreach (var personDTO in personList)
+            {
+                Console.WriteLine("{0} {1} {2} {3} {4} {5}", personDTO.Element("Name").Value, personDTO.Element("Address").Element("Street").Value, personDTO.Element("Address").Element("City").Value
+                    , personDTO.Element("Address").Element("State").Value, personDTO.Element("Address").Element("Zip").Value, personDTO.Element("Address").Element("Country").Value);
+            }
+
+            // subselect for main phone
+            var qryPeople = (from personDTO in xElement.Elements("Person")
+                             where personDTO.Element("Current").Value.ToString() == "Yes" 
+                             select new
+                             {
+                                psnName = personDTO.Element("Name").Value,
+                                 psnStreet = personDTO.Element("Address").Element("Street").Value,
+                                 psnCity = personDTO.Element("Address").Element("City").Value,
+                                 psnState = personDTO.Element("Address").Element("State").Value,
+                                 psnZip = personDTO.Element("Address").Element("Zip").Value,
+                                 psnCountry = personDTO.Element("Address").Element("Country").Value,
+                                      // mainphone is an enumerable, but has a null value
+                                      //   mainPhone = (from phoneDTO in personDTO.Elements("Phone")
+                                      //                       where phoneDTO.Element("Phone").Attribute("type").Value.ToString() == "Main"
+                                      //                //where phoneDTO.Attribute("type").Value.ToString() =="Main"
+                                      //                select new { psnMainPhone = phoneDTO.Element("Phone").Value }),
+                                      //                //select new { psnMainPhone = phoneDTO.Descendants("Phone") }),
+                                      //                select phoneDTO),
+                                      // phoneList dies because the result is multiple. runtime expects one item, not a list
+                                      //  phoneList = from phoneRec in personDTO.Descendants("Phone") select new
+                                      //  {
+                                      //      type = phoneRec.Attribute("type").Value,
+                                      //      phoneNbr = phoneRec.Value,
+                                      //      pNbr = phoneRec.Element("Phone").Value
+                                 phoneList = personDTO.Descendants("Phone"),
+                                 firstPhone = personDTO.Descendants("Phone").Take(1),
+                                 secondPhone = personDTO.Descendants("Phone").Skip(1).Take(1)
+
+                             });
+
+            foreach (var personDTO in qryPeople)
+            {
+                String thePhone = "";
+                foreach (var phone in personDTO.phoneList)
+                {
+                    if (phone.Attribute("type").Value == "Main")
+                    {
+                        thePhone = phone.Value;
+                    }
+                }
+
+                //  if (personDTO.firstPhone.ElementAt(0).Attribute("type").Value == "Main")
+                //  {
+                //      thePhone = personDTO.firstPhone.ElementAt(0).Value;
+                //  }
+                //  else
+                //  {
+                //      thePhone = personDTO.secondPhone.ElementAt(0).Value;
+                //  }
+                Console.WriteLine("{0} {1} {2} {3} {4} {5} {6}", personDTO.psnName, personDTO.psnStreet, personDTO.psnCity, personDTO.psnState, personDTO.psnZip, personDTO.psnCountry, thePhone);
+            }
+
+
+        }
     }
 }
