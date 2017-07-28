@@ -34,5 +34,18 @@ namespace WebApp_MVC.Controllers
             return View();
         }
 
+        public ActionResult NewViewPage()
+        {
+            var controller = RouteData.Values["controller"];
+            var action = RouteData.Values["action"];
+            var id = RouteData.Values["id"];
+
+            var msg = String.Format("Controller: >{0}< Action: >{1}< Id: >{2}<",
+                controller, action, id);
+            ViewBag.Message = msg;
+
+            return View();
+        }
+
     }
 }
