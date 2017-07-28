@@ -6,12 +6,14 @@ using System.Web.Mvc;
 
 namespace WebApp_MVC.Controllers
 {
+    // put the [ authorize ] here for the entire class to require authorisation
     public class CustomController : Controller
     {
         // GET: custom/pages
+        [Authorize]
         public ActionResult Pages()
         {
-            return Content("Custom Controller has supplied this information.");
+            return Content("Pages: Custom Controller has supplied this information. Only visible if you are logged in.");
         }
 
         // GET: custom/
@@ -24,13 +26,13 @@ namespace WebApp_MVC.Controllers
         [HttpGet]
         public ActionResult Fred()
         {
-            return Content("Custom controller supplied this for NewView.");
+            return Content("NewView: Custom controller supplied this for NewView.");
         }
 
         // GET: custom/manual
         public ActionResult Manual()
         {
-            return Content("Custom controller output for Manual");
+            return Content("Manual: Custom controller output for Manual");
         }
     }
 }
