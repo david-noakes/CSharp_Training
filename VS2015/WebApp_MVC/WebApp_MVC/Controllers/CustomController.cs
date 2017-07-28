@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebApp_MVC.Filters;
 
 namespace WebApp_MVC.Controllers
 {
     // put the [ authorize ] here for the entire class to require authorisation
+    // adding thew [ log ] attribute to call the LogAttributes.OnActionExecuted - requires the filters namespace
     public class CustomController : Controller
     {
         // GET: custom/pages
@@ -17,6 +19,7 @@ namespace WebApp_MVC.Controllers
         }
 
         // GET: custom/
+        [Log]
         public ActionResult Index()
         {
             return RedirectToAction("Alternate", "Home");
