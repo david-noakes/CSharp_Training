@@ -47,5 +47,12 @@ namespace WebApp_MVC.Controllers
             return View();
         }
 
+        public ActionResult Alternate()
+        {
+            ViewBag.Message = "Your new page that you added.";
+
+            return Content("Redirect page.");
+        }
+
     }
 }
