@@ -1,3 +1,6 @@
 ﻿some pages require authorization
 for my dialog PC account = email=Danny0@shadowlands.erehwon,  pwd=Danny0@
 email has to be a@b.c, pwd has to be >5, Upper and lower, numeric and special
+
+^KC = comment out block
+^KU = uncomment block

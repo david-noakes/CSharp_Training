@@ -1,6 +1,6 @@
 ﻿@{
     @* set page title using ViewBag *@
-ViewBag.Title = "About Page";
+ViewBag.Title = "About Page - Using HTML helpers";
 string todayIs = "";
 // get current date time
 var currentDay = DateTime.UtcNow.DayOfWeek;
@@ -13,6 +13,24 @@ todayIs = "Today is " + currentDay + " and I think it's a nice day.";
 </hgroup>
 
 <article>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true);
+        <div class="label">
+            @Html.Label("Full Name")
+        </div>
+        <div>
+            @Html.TextBox("Full Name")
+        </div>
+        <div class="label">
+            @Html.Label("Destination")
+        </div>
+        <div>
+            @Html.TextBox("Destination")
+        </div>
+        <input type="submit" value="Submit"/>
+    }
+    <!--
     <form action="" method="post">
         <p>
             <label for="fullname">Please enter your fullname:</label>
@@ -24,12 +42,13 @@ todayIs = "Today is " + currentDay + " and I think it's a nice day.";
         </p>
         <input type="submit" value="Submit"/>
     </form>
+    -->
         @{ 
         if (IsPost)
         {
             // get user input
-            var userName = Request["fullname"];
-            var destn = Request["destination"];
+            var userName = Request["Full Name"];
+            var destn = Request["Destination"];
            <p>Hello @userName. You have selected @destn as your destination.</p>
             }
             else
