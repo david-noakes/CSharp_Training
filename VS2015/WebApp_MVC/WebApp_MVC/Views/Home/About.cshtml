@@ -1,10 +1,16 @@
 ﻿@{
     @* set page title using ViewBag *@
-ViewBag.Title = "About Page - Using HTML helpers";
+ViewBag.Title = "About Page - Using HTML helper to strip out html markup tags in the input";
 string todayIs = "";
 // get current date time
 var currentDay = DateTime.UtcNow.DayOfWeek;
 todayIs = "Today is " + currentDay + " and I think it's a nice day.";
+var testString = "<div> <h3> some text inside a div and h3 tag</h3></div>";
+}
+
+@helper myHtmlStrip(string htmlInput)
+{ 
+    @System.Text.RegularExpressions.Regex.Replace(htmlInput, "<.*?>", string.Empty);
 }
 
 <hgroup class="title">
@@ -59,4 +65,6 @@ todayIs = "Today is " + currentDay + " and I think it's a nice day.";
     <p>
         @todayIs
     </p>
+    <p> @testString</p>
+    <p> @myHtmlStrip(testString)</p>
 </article>
