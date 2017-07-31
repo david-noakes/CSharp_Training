@@ -1,7 +1,43 @@
 ﻿@{
-    ViewBag.Title = "About";
+    @* set page title using ViewBag *@
+ViewBag.Title = "About Page";
+string greeting = "";
+if (IsPost)
+{
+    // get user input
+    var userName = Request["fullname"];
+    var destn = Request["destination"];
+    greeting = "Hello " + userName + "." + "You have selected " + destn + " as your destination.";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+else
+{
+    greeting = "Hello Anonymous";
+}
+string todayIs = "";
+// get current date time
+var currentDay = DateTime.UtcNow.DayOfWeek;
+todayIs = "Today is " + currentDay + " and I think it's a nice day.";
+}
 
-<p>Use this area to provide additional information.</p>
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+<article>
+    <form action="" method="post">
+        <p>
+            <label for="fullname">Please enter your fullname:</label>
+            <input type="text" name="fullname" />
+        </p>
+        <p>
+            <label for="destination">Please enter your preferred destination.</label>
+            <input type="text" name="destination" />
+        </p>
+        <input type="submit" value="Submit"/>
+    </form>
+    <p>
+        @greeting
+        @todayIs
+    </p>
+</article>
