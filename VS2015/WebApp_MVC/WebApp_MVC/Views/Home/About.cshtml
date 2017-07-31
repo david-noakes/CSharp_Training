@@ -16,13 +16,13 @@ todayIs = "Today is " + currentDay + " and I think it's a nice day.";
     @using (Html.BeginForm())
     {
         @Html.ValidationSummary(true);
-        <div class="label">
+        <div>
             @Html.Label("Full Name")
         </div>
         <div>
             @Html.TextBox("Full Name")
         </div>
-        <div class="label">
+        <div>
             @Html.Label("Destination")
         </div>
         <div>
