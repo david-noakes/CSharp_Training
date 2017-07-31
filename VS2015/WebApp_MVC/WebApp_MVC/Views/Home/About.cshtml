@@ -1,18 +1,6 @@
 ﻿@{
     @* set page title using ViewBag *@
 ViewBag.Title = "About Page";
-string greeting = "";
-if (IsPost)
-{
-    // get user input
-    var userName = Request["fullname"];
-    var destn = Request["destination"];
-    greeting = "Hello " + userName + "." + "You have selected " + destn + " as your destination.";
-}
-else
-{
-    greeting = "Hello Anonymous";
-}
 string todayIs = "";
 // get current date time
 var currentDay = DateTime.UtcNow.DayOfWeek;
@@ -36,8 +24,21 @@ todayIs = "Today is " + currentDay + " and I think it's a nice day.";
         </p>
         <input type="submit" value="Submit"/>
     </form>
+        @{ 
+        string greeting = "";
+        if (IsPost)
+        {
+            // get user input
+            var userName = Request["fullname"];
+            var destn = Request["destination"];
+           <p>Hello @userName. You have selected @destn as your destination.</p>
+            }
+            else
+            {
+                <p>Hello Anonymous. You must use POST</p>
+            }
+        }
     <p>
-        @greeting
         @todayIs
     </p>
 </article>
