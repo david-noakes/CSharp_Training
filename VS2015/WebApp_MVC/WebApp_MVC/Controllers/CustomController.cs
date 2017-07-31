@@ -37,5 +37,21 @@ namespace WebApp_MVC.Controllers
         {
             return Content("Manual: Custom controller output for Manual");
         }
+
+        // GET: custom/guide
+        public ActionResult Guide()
+        {
+            ViewBag.testFlag = false;
+
+            return View();
+        }
+
+        // GET: custom/cars
+        public ActionResult Cars()
+        {
+            ViewBag.testMsg = "This is the cars view.";
+
+            return View();
+        }
     }
 }
