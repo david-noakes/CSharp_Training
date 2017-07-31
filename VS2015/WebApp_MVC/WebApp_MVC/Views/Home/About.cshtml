@@ -67,4 +67,10 @@ var testString = "<div> <h3> some text inside a div and h3 tag</h3></div>";
     </p>
     <p> @testString</p>
     <p> @myHtmlStrip(testString)</p>
+    <p>
+        Using Custom Stripper:
+        @using WebApp_MVC.Helpers;
+        @Html.customHTMLStripper(testString)
+        <!-- note do not put ';' on the end of this line it will appear in the text output -->
+    </p>
 </article>
