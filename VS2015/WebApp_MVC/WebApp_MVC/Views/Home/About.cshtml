@@ -37,6 +37,27 @@ var showPartial = Request["Show Partial"];
 </div>
 
 <article>
+    <div id="list1Container" onclick="toggleList1()">
+        List 1:
+        <ul id="list1">
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+            <li>Item 4</li>
+        </ul>
+    </div>
+    <div id="list2Container" onclick="toggleList2()">
+        List 2:
+        <ul id="list2">
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+            <li>Item 4</li>
+        </ul>
+    </div>
+</article>
+
+<article>
     @using (Html.BeginForm())
     {
         @Html.ValidationSummary(true);
@@ -117,3 +138,12 @@ var showPartial = Request["Show Partial"];
         <div id="pane"></div>
     </div>
 </article>
+<aside>
+    <h3>Aside Title</h3>
+    <p>Use this area to provide additional information</p>
+    <ul>
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li>@Html.ActionLink("About", "About", "Home")</li>
+        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+    </ul>
+</aside>

@@ -25,3 +25,11 @@ function clearAll() {
 function initPicker() {
     $("#dp").datepicker();
 }
+
+function toggleList1() {
+    $("#list1").toggle("fold", 1500);
+}
+
+function toggleList2() {
+    $("#list2").toggle("fold", 1500);
+}
