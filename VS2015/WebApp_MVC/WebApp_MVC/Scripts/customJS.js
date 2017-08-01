@@ -1,10 +1,4 @@
-﻿//$('#pane').position({
-//    my: 'center',
-//    at: 'center',
-//    of: '#paneContainer'
-//});
-
-function togglePane() {
+﻿function togglePane() {
     $('#pane').toggle('bounce', { distance: 100, times: 9 }, 'slow');
 }
 
@@ -34,6 +28,24 @@ function toggleList2() {
     $("#list2").toggle("fold", 1500);
 }
 
+function showMsg1() {
+    $("#display").html("'Twas brillig, and the slythy toves");
+}
+
+function showMsg2() {
+    $("#display").html("did gyre and gymbol in the wabe,");
+}
+
+function showMsg3() {
+    $("#display").html("all mimsey were the borogoves...");
+}
+
+//$('#pane').position({
+//    my: 'center',
+//    at: 'center',
+//    of: '#paneContainer'
+//});
+//
 //$("#pane1").position({
 //    my: "left center",   /*  horizontal  vertical */
 //    at: "left center",
