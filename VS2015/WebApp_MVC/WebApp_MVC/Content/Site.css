@@ -33,8 +33,10 @@ textarea {
     width: 50px;
     background-color: #af000f;
     position: relative;
-    top: 95px;
-    left: 125px;
+    top: 40%;
+    left: 41%;
+ /*   top: 95px;
+    left: 125px; */
 }
 
 #paneContainer{

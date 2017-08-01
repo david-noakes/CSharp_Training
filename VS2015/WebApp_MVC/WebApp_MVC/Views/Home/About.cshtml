@@ -19,6 +19,16 @@ var showPartial = Request["Show Partial"];
     <h2>@ViewBag.Message</h2>
 </hgroup>
 
+<div>
+    <button id="btnCss" onclick="changeStyle()">Change Style</button>
+    <button id="btnClear" onclick="clearAll()">Clear Changes</button>
+</div>
+<div>
+    Enter a message: <input type="text" id="field1" />
+    <input type="submit" value="Submit Msg" onclick="changeVal()" />
+</div>
+<p id="display">Sample message ap=pears here</p>
+
 <article>
     @using (Html.BeginForm())
     {
