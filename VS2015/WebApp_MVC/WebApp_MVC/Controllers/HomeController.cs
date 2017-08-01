@@ -54,5 +54,12 @@ namespace WebApp_MVC.Controllers
             return Content("Redirect page.");
         }
 
+        public ActionResult TestPage()
+        {
+            ViewBag.PageContent = "Content from our test page";
+
+            return View();
+        }
+
     }
 }

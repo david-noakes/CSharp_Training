@@ -64,3 +64,41 @@ function showMsg3() {
 //    of: "#validArea"
 //});
 
+$("#btnRequest").click(function () {
+    $.ajax({
+   /*     url: "http://localhost:52476/Home/TestPage",   does not respond, no error*/
+   /*     url: "localhost:52476/Home/TestPage",   request failed */
+   /*     url: "localhost:52476/",  request failed*/
+   /*     url: "/",  no response */
+   /*     url: "/Home/",   no response */
+   /*     url: "/Home/TestPage",  no response */
+   /*     url: "Home/TestPage",   page not found */
+   /*     url: "Home/TestPage/",  page not found */
+   /*     url: "/TestPage",   page not found */
+   /*     url: "TestPage",   no response */
+   /*     url: "Contact",  no response */
+        url: "TestPage",
+        type: "POST",
+        success: function (data, testStatus, xhr) {
+            var successMsg = "Request complete: " + textStatus;
+            alert(successMsg);
+            $("#resultContainer").html(data);
+        },
+        error: function (xhr, status, error) {
+            var errorMsg = "Request failed: " + error;
+            alert(errorMsg);
+        },
+        statusCode: {
+            404: function () {
+                alert("Error: the requ3sted page was not found");
+            },
+            200: function (){
+                alert("Status code 200 - good results");
+            }
+        },
+        complete: function (xhr, textStatus) {
+            var doneMsg = "Operation complete with status: " + textStatus;
+            alert(doneMsg);
+        }
+    })
+})
