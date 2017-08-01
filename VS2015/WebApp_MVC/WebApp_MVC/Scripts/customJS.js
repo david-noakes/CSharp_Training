@@ -21,3 +21,7 @@ function clearAll() {
     $('#display').html('Sample message appears here');
     $('#display').css('background-color', '#efeeef'); // light grey
 }
+
+function initPicker() {
+    $("#dp").datepicker();
+}

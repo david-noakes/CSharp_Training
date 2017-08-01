@@ -29,6 +29,13 @@ var showPartial = Request["Show Partial"];
 </div>
 <p id="display">Sample message ap=pears here</p>
 
+<div>
+    <input type="button" value="Initialize Picker" onclick="initPicker()" />
+</div>
+<div>
+    Select a date: <input type="text" id="dp" />
+</div>
+
 <article>
     @using (Html.BeginForm())
     {

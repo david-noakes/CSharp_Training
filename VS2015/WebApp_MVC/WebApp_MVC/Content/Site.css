@@ -28,11 +28,13 @@ textarea {
     color: lightgoldenrodyellow;
 }
 
-#pane{   /* box is supposed to center without relative positioning */
+#pane{   /* box is supposed to center without relative positioning 
+             which it does when we load the styles in BundleConfig
+         */
     height: 50px;
     width: 50px;
     background-color: #af000f;
-    position: relative;
+/*    position: relative;
     top: 40%;
     left: 41%;
  /*   top: 95px;
