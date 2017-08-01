@@ -35,10 +35,8 @@ textarea {
     width: 50px;
     background-color: #af000f;
     position: relative;
-    top: 40%;
-    left: 41%; 
- /*   top: 95px;
-    left: 125px; */ 
+    top: calc(50% - 50px/2); /* height divided by 2*/
+    left: calc(50% - 50px/2); 
 }
 
 #paneContainer{
@@ -46,3 +44,37 @@ textarea {
     width: 300px;
     background-color: lightgoldenrodyellow;
 }
+
+.validPaneLeft{
+    position: relative;
+    height: 50px;
+    width: 50px;
+    background-color: #7ac0da;
+    top: calc(50% - 50px/2); /* height divided by 2*/
+    left: 0; 
+}
+
+.validPaneCenter{
+    position: relative;
+    height: 50px;
+    width: 50px;
+    background-color: #7ac0da;
+    top: calc(50% - 50px/2 - 50px); /* is relative to validPaneLeft */
+    left: calc(50% - 50px/2); 
+}
+
+.validPaneRight{
+    position: relative;
+    height: 50px;
+    width: 50px;
+    background-color: #7ac0da;
+    top: calc(50% - 50px/2 - 100px); /* nope - relative to validPaneCenter  */
+    left: calc(100% - 50px); 
+}
+
+#validArea{
+    height: 350px;
+    width: 400px;
+    background-color: burlywood;
+}
+

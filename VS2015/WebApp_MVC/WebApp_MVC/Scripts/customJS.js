@@ -1,8 +1,8 @@
-﻿$('#pane').position({
-    my: 'center',
-    at: 'center',
-    of: 'paneContainer'
-});
+﻿//$('#pane').position({
+//    my: 'center',
+//    at: 'center',
+//    of: '#paneContainer'
+//});
 
 function togglePane() {
     $('#pane').toggle('bounce', { distance: 100, times: 9 }, 'slow');
@@ -33,3 +33,22 @@ function toggleList1() {
 function toggleList2() {
     $("#list2").toggle("fold", 1500);
 }
+
+//$("#pane1").position({
+//    my: "left center",   /*  horizontal  vertical */
+//    at: "left center",
+//    of: "#validArea"
+//});
+
+//$("#pane2").position({
+//    my: "center",
+//    at: "center",
+//    of: "#validArea"
+//});
+
+//$("#pane3").position({
+//    my: "right center",
+//    at: "right center",
+//    of: "#validArea"
+//});
+

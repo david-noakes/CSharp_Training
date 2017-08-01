@@ -19,6 +19,12 @@ var showPartial = Request["Show Partial"];
     <h2>@ViewBag.Message</h2>
 </hgroup>
 
+<div id="validArea">
+    <div id="pane1" class="validPaneLeft"></div>
+    <div id="pane2" class="validPaneCenter"></div>
+    <div id="pane3" class="validPaneRight"></div>
+</div>
+
 <div>
     <button id="btnCss" onclick="changeStyle()">Change Style</button>
     <button id="btnClear" onclick="clearAll()">Clear Changes</button>
