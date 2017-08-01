@@ -27,3 +27,18 @@ textarea {
     background-color: royalblue;
     color: lightgoldenrodyellow;
 }
+
+#pane{   /* box is supposed to center without relative positioning */
+    height: 50px;
+    width: 50px;
+    background-color: #af000f;
+    position: relative;
+    top: 95px;
+    left: 125px;
+}
+
+#paneContainer{
+    height: 250px;
+    width: 300px;
+    background-color: lightgoldenrodyellow;
+}

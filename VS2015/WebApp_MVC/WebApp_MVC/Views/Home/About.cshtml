@@ -94,3 +94,9 @@ var showPartial = Request["Show Partial"];
         @Html.Partial("_PartialPage1")
     }
 </article>
+<article>
+    <p>Click inside to make the box appear and disappear:</p>
+    <div id="paneContainer" onclick="togglePane()">
+        <div id="pane"></div>
+    </div>
+</article>
