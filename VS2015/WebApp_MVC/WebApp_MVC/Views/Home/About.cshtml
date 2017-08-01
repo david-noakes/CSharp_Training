@@ -6,6 +6,7 @@ string todayIs = "";
 var currentDay = DateTime.UtcNow.DayOfWeek;
 todayIs = "Today is " + currentDay + " and I think it's a nice day.";
 var testString = "<div> <h3> some text inside a div and h3 tag</h3></div>";
+var showPartial = Request["Show Partial"];
 }
 
 @helper myHtmlStrip(string htmlInput)
@@ -73,4 +74,23 @@ var testString = "<div> <h3> some text inside a div and h3 tag</h3></div>";
         @Html.customHTMLStripper(testString)
         <!-- note do not put ';' on the end of this line it will appear in the text output -->
     </p>
+</article>
+<article>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true);
+        <div>
+            @Html.Label("Show Partial")
+        </div>
+        <div>
+            @Html.CheckBox("Show Partial")
+        </div>
+        <input type="submit" value="Submit" />
+    }
+</article>
+<article>
+    @if (showPartial != null && showPartial != "false")
+    {
+        @Html.Partial("_PartialPage1")
+    }
 </article>

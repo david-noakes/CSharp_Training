@@ -276,6 +276,7 @@
     <Content Include="Views\Home\NewViewPage.cshtml" />
     <Content Include="Views\Custom\Pages.cshtml" />
     <Content Include="Views\Shared\_LayoutPage1.cshtml" />
+    <Content Include="Views\Home\_PartialPage1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
