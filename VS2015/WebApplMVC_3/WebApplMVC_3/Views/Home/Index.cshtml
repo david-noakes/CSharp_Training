@@ -1,5 +1,7 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    // set no caching
+    Response.Cache.SetCacheability(HttpCacheability.NoCache);
 }
 
 <div class="jumbotron">
