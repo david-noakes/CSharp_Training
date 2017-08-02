@@ -34,6 +34,7 @@ namespace WebApplMVC_3.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Current time is: " + DateTime.Now.ToString("T");
+            
 
             return View();
         }

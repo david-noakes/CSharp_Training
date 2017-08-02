@@ -1,8 +1,12 @@
-﻿@{
+﻿@using WebApplMVC_3.Models;
+@{
     ViewBag.Title = "Contact";
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
+<div>
+    @{Response.WriteSubstitution(InfoList.RenderItem);}
+</div>
 
 <address>
     One Microsoft Way<br />
