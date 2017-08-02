@@ -66,20 +66,14 @@ function showMsg3() {
 
 $("#btnRequest").click(function () {
     $.ajax({
-   /*     url: "http://localhost:52476/Home/TestPage",   does not respond, no error*/
-   /*     url: "localhost:52476/Home/TestPage",   request failed */
-   /*     url: "localhost:52476/",  request failed*/
-   /*     url: "/",  no response */
-   /*     url: "/Home/",   no response */
-   /*     url: "/Home/TestPage",  no response */
-   /*     url: "Home/TestPage",   page not found */
-   /*     url: "Home/TestPage/",  page not found */
-   /*     url: "/TestPage",   page not found */
-   /*     url: "TestPage",   no response */
-   /*     url: "Contact",  no response */
+        /*     url: "http://localhost:52476/Home/TestPage",  good results */
+        /*     url: "/",  good results */
+        /*     url: "/Home/",   good results */
+        /*     url: "/Home/TestPage",  good results */
+        /*     url: "TestPage",   good results */
         url: "TestPage",
         type: "POST",
-        success: function (data, testStatus, xhr) {
+        success: function (data, textStatus, xhr) {
             var successMsg = "Request complete: " + textStatus;
             alert(successMsg);
             $("#resultContainer").html(data);

@@ -26,5 +26,11 @@ namespace WebAppMVC_2.Controllers
 
             return View();
         }
+
+        public ActionResult TestPage()
+        {
+            ViewBag.PageContent = "Content of Testpage.";
+            return View();
+        }
     }
 }
