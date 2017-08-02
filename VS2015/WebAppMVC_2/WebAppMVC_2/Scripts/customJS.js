@@ -50,3 +50,23 @@
         }
     })
 })
+
+
+$("#btn1").click(function () {
+    $.ajax({
+        url: "GetInfo",
+        type: "POST",
+        success: function (result) {
+            $("#XHResponse").html(result);
+        },
+        error: function (xhr, status, error) {
+            var errorMsg = "Request failed: " + status + "[" + xhr.status + "]=" + error + "<br/>" +
+                            "ReadyState: " + xhr.readyState + ", ResponseText: " + xhr.responseText;
+            $("#XHResponse").html(errorMsg);
+        },
+        complete: function (xhr, textStatus) {
+            var doneMsg = "Operation complete with status: " + textStatus;
+            alert(doneMsg);
+        }
+    })
+})

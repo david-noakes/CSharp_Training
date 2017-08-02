@@ -32,5 +32,14 @@ namespace WebAppMVC_2.Controllers
             ViewBag.PageContent = "Content of Testpage.";
             return View();
         }
+
+        public PartialViewResult GetInfo()
+        {
+            ViewBag.ItemDEtails = "Twas brillig and the slythy toves <br/>" +
+                                  "did gyre and gimbol in the wabe,<br/>" +
+                                  "all mimsey were the borogoves <br/>" +
+                                  "and the mome raths outgabe";
+            return PartialView("_MaryInfo");
+        }
     }
 }
