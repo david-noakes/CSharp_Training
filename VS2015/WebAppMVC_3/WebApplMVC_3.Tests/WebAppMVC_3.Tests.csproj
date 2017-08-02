@@ -92,9 +92,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WebApplMVC_3\WebApplMVC_3.csproj">
+    <ProjectReference Include="..\WebApplMVC_3\WebAppMVC_3.csproj">
       <Project>{DAF7482D-80C7-44FA-9CE2-8FE34434EF62}</Project>
-      <Name>WebApplMVC_3</Name>
+      <Name>WebAppMVC_3</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
