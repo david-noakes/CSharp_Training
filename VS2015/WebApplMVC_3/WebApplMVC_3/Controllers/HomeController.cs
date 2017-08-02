@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace WebApplMVC_3.Controllers
 {
@@ -20,9 +21,14 @@ namespace WebApplMVC_3.Controllers
             return View();
         }
 
+        [OutputCache(Duration = 15,
+            Location = OutputCacheLocation.Any,
+            VaryByCustom = "browser",
+            VaryByParam = "none"
+            )]
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Current time is: " + DateTime.Now.ToString("T");
 
             return View();
         }
