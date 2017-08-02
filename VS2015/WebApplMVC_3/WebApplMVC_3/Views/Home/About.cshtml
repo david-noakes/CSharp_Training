@@ -1,5 +1,10 @@
 ﻿@{
     ViewBag.Title = "About";
+    // set up http cache
+    Response.Cache.SetCacheability(HttpCacheability.Public);
+    Response.Cache.SetExpires(DateTime.Now.AddSeconds(15));
+    Response.Cache.SetValidUntilExpires(true);
+    Response.Cache.VaryByParams["none"] = true;
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>

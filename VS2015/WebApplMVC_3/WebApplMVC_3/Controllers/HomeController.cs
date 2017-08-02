@@ -11,12 +11,13 @@ namespace WebApplMVC_3.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.Message = "Current time is: " + DateTime.Now.ToString("T");
             return View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Current time is: " + DateTime.Now.ToString("T");
 
             return View();
         }
