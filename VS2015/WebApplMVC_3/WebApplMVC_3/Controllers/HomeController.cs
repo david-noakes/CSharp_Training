@@ -31,6 +31,7 @@ namespace WebApplMVC_3.Controllers
         //    VaryByParam = "none"
         //    )]
 
+        [OutputCache(CacheProfile = "shortCache")]
         public ActionResult Contact()
         {
             ViewBag.Message = "Current time is: " + DateTime.Now.ToString("T");
