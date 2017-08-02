@@ -41,5 +41,12 @@ namespace WebAppMVC_2.Controllers
                                   "and the mome raths outgabe";
             return PartialView("_MaryInfo");
         }
+
+        public PartialViewResult GetTestPage()
+        {
+            ViewBag.Title = "Get Test Page";
+            ViewBag.PageContent = "Content of getTestPage.";
+            return PartialView("TestPage");
+        }
     }
 }

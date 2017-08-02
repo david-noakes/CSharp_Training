@@ -314,6 +314,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\TestPage.cshtml" />
     <Content Include="Views\Home\_MaryInfo.cshtml" />
+    <Content Include="Views\Home\GetTestPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

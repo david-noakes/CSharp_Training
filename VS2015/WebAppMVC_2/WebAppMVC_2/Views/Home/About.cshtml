@@ -8,10 +8,24 @@
     <input type="button" value="Call service with ajax" id="btnRequest" />
 </div>
 <div id="resultContainer">
-
+    Default text for resultContainer
 </div>
 
 <div>
     <input type="button" value="Retrieve response" id="btn1" />
 </div>
 <div id="XHResponse">Placeholder text...</div>
+
+<!--  this executes asynchronously -->
+@* but it does not retrieve a partial page for replacement of text
+   instead it navigates to the new page*@
+@Ajax.ActionLink(
+    "Click to send Ajax Request",
+    "GetTestPage",
+    new AjaxOptions
+    {
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "#resultContainer"
+    }
+    )
