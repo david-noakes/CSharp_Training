@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppMVC_3", "WebApplMVC_3\WebAppMVC_3.csproj", "{DAF7482D-80C7-44FA-9CE2-8FE34434EF62}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppMVC_3", "WebAppMVC_3\WebAppMVC_3.csproj", "{DAF7482D-80C7-44FA-9CE2-8FE34434EF62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppMVC_3.Tests", "WebApplMVC_3.Tests\WebAppMVC_3.Tests.csproj", "{D62D1143-9AC3-4F8C-9FF9-E754AC57C63C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppMVC_3.Tests", "WebAppMVC_3.Tests\WebAppMVC_3.Tests.csproj", "{D62D1143-9AC3-4F8C-9FF9-E754AC57C63C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

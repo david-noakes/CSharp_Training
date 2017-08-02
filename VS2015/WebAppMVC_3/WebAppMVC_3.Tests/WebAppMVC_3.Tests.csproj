@@ -92,7 +92,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WebApplMVC_3\WebAppMVC_3.csproj">
+    <ProjectReference Include="..\WebAppMVC_3\WebAppMVC_3.csproj">
       <Project>{DAF7482D-80C7-44FA-9CE2-8FE34434EF62}</Project>
       <Name>WebAppMVC_3</Name>
     </ProjectReference>
