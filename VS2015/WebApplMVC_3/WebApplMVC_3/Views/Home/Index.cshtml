@@ -20,6 +20,25 @@
         <div id="result"></div>
     </section>
 </div>
+
+
+
+<div id="body">
+    <section>
+        <h1>Feature Detection demo</h1>
+        <h3>
+            Detect feature support for the Performance object of the hasFeature() method call.
+        </h3>
+    </section>
+    <br />
+    <section class="featured">
+        <div id="result1"></div>
+    </section>
+</div>
+
+
+
+
 @section scripts{
     <script>
         $(function () {
@@ -35,7 +54,26 @@
             }
         });
     </script>
+    <script>
+        $(function () {
+            var $rC = $("#result1");
+            var feature = "SVG";
+            var version = "1.1";
+            var featureFlag;
+            if (document.implementation) {
+                // check for SVG support
+                featureFlag = document.implementation.hasFeature(feature, version);
+                // report on support status
+                $rC.html(feature + " " + version + " supported: " + featureFlag);
+            }
+            else {
+                $rC.html("Sorry, DOMImplementation not supported for this browser");
+            }
+        })
+    </script>
 }
+
+
 
 <div class="row">
     <div class="col-md-4">
