@@ -10,11 +10,14 @@
             $(document).ready(function () {
                 $.mobile.ajaxEnabled = false; 
             });
+            //$(document).on("mobileinit", function () {
+            //    $.mobile.ajaxEnabled = false;
+            //});   -- used for combined layout
         </script>
     </head> 
 <body> 
 
-    <div data-role="page" data-theme="a">
+    <div data-role="page" data-theme="b">
         @Html.Partial("_ViewSwitcher")
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
