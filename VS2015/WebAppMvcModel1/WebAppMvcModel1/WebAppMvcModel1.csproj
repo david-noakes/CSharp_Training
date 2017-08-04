@@ -205,6 +205,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ListItem.cs" />
+    <Compile Include="Models\ListItem_2.cs" />
     <Compile Include="Models\myDBContext.cs" />
     <Compile Include="Models\myDBInitializer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -285,6 +286,7 @@
     <Content Include="Views\Supplier\Edit.cshtml" />
     <Content Include="Views\Supplier\Index.cshtml" />
     <Content Include="Views\Home\ListItemView.cshtml" />
+    <Content Include="Views\Home\ListItem_2View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

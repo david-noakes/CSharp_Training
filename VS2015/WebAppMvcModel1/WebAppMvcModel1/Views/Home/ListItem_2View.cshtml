@@ -1,0 +1,23 @@
+﻿@model WebAppMvcModel1.Models.ListItem_2
+@{
+    ViewBag.Title = "WebAppMvcModel1 -> ListItemView_2";
+}
+<hgroup>
+    <h2>@ViewBag.Title</h2>
+    <h3>@ViewBag.Message</h3>
+</hgroup>
+
+<section class="feature">
+    <div>
+        @Html.DisplayNameFor(Model => Model.Title)
+        @Html.DisplayFor(Model => Model.Title)
+    </div>
+    <div>
+        @Html.DisplayNameFor(Model => Model.ListItemEntry)
+        @Html.DisplayFor(Model => Model.ListItemEntry)        
+    </div>
+    <div>
+        @Html.DisplayNameFor(Model => Model.TimeCreated)
+        @Html.DisplayFor(Model => Model.TimeCreated)
+    </div>
+</section>
