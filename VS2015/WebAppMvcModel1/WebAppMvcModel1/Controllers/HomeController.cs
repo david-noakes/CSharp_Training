@@ -37,5 +37,17 @@ namespace WebAppMvcModel1.Controllers
 
             return View("ModelInfo", someInfo);
         }
+
+        public ActionResult ListItemView()
+        {
+            ListItem itemslist = new ListItem();
+            itemslist.Title = "Grocery Shopping";
+            itemslist.ListItemEntry = "Pick up carrots, potatoes, onions, bread, milk, strawberries";
+            itemslist.TimeCreated = DateTime.Now.ToString("T");
+
+            ViewBag.Message = "Model information display view";
+
+            return View("ListItemView", itemslist);
+        }
     }
 }
