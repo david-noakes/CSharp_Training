@@ -20,7 +20,8 @@ namespace WebAppMvcModel1
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             // Create and seed database using data context
-            Database.SetInitializer<myDBContext>(new myDBInitializer(new DbContext("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=WebAppMvc;Integrated Security=True")));
+     //       Database.SetInitializer<myDBContext>(new myDBInitializer(new DbContext("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=WebAppMvc;Integrated Security=True")));
+     //    remove now it is created
         }
     }
 }
