@@ -10,107 +10,107 @@ using WebAppMvcModel1.Models;
 
 namespace WebAppMvcModel1.Controllers
 {
-    public class SupplierController : Controller
+    public class ItemListController : Controller
     {
         private myDBContext db = new myDBContext("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=WebAppMvc;Integrated Security=True");
 
-        // GET: Supplier
+        // GET: ItemList
         public ActionResult Index()
         {
-            return View(db.Supplier.ToList());
+            return View(db.ItemList.ToList());
         }
 
-        // GET: Supplier/Details/5
+        // GET: ItemList/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Supplier supplier = db.Supplier.Find(id);
-            if (supplier == null)
+            ItemList itemList = db.ItemList.Find(id);
+            if (itemList == null)
             {
                 return HttpNotFound();
             }
-            return View(supplier);
+            return View(itemList);
         }
 
-        // GET: Supplier/Create
+        // GET: ItemList/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Supplier/Create
+        // POST: ItemList/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SupplierId,CompanyName,City,Country")] Supplier supplier)
+        public ActionResult Create([Bind(Include = "ListItemID,Title,ListItemEntry,UnitPrice")] ItemList itemList)
         {
             if (ModelState.IsValid)
             {
-                db.Supplier.Add(supplier);
+                db.ItemList.Add(itemList);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(supplier);
+            return View(itemList);
         }
 
-        // GET: Supplier/Edit/5
+        // GET: ItemList/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Supplier supplier = db.Supplier.Find(id);
-            if (supplier == null)
+            ItemList itemList = db.ItemList.Find(id);
+            if (itemList == null)
             {
                 return HttpNotFound();
             }
-            return View(supplier);
+            return View(itemList);
         }
 
-        // POST: Supplier/Edit/5
+        // POST: ItemList/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SupplierId,CompanyName,City,Country")] Supplier supplier)
+        public ActionResult Edit([Bind(Include = "ListItemID,Title,ListItemEntry,UnitPrice")] ItemList itemList)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(supplier).State = EntityState.Modified;
+                db.Entry(itemList).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(supplier);
+            return View(itemList);
         }
 
-        // GET: Supplier/Delete/5
+        // GET: ItemList/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Supplier supplier = db.Supplier.Find(id);
-            if (supplier == null)
+            ItemList itemList = db.ItemList.Find(id);
+            if (itemList == null)
             {
                 return HttpNotFound();
             }
-            return View(supplier);
+            return View(itemList);
         }
 
-        // POST: Supplier/Delete/5
+        // POST: ItemList/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Supplier supplier = db.Supplier.Find(id);
-            db.Supplier.Remove(supplier);
+            ItemList itemList = db.ItemList.Find(id);
+            db.ItemList.Remove(itemList);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

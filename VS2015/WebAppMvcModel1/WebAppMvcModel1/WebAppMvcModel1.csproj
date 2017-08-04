@@ -197,6 +197,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItemListController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
@@ -287,6 +288,11 @@
     <Content Include="Views\Supplier\Index.cshtml" />
     <Content Include="Views\Home\ListItemView.cshtml" />
     <Content Include="Views\Home\ListItem_2View.cshtml" />
+    <Content Include="Views\ItemList\Create.cshtml" />
+    <Content Include="Views\ItemList\Delete.cshtml" />
+    <Content Include="Views\ItemList\Details.cshtml" />
+    <Content Include="Views\ItemList\Edit.cshtml" />
+    <Content Include="Views\ItemList\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

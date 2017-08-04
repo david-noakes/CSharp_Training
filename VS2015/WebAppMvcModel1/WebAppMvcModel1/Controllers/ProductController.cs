@@ -18,7 +18,7 @@ namespace WebAppMvcModel1.Controllers
         // GET: Product
         public ActionResult Index()
         {
-            var products = db.Products.Include(p => p.Supplier);
+            var products = db.Product.Include(p => p.Supplier);
             return View(products.ToList());
         }
 
@@ -29,7 +29,7 @@ namespace WebAppMvcModel1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
+            Product product = db.Product.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
@@ -40,7 +40,7 @@ namespace WebAppMvcModel1.Controllers
         // GET: Product/Create
         public ActionResult Create()
         {
-            ViewBag.SupplierId = new SelectList(db.Suppliers, "SupplierId", "CompanyName");
+            ViewBag.SupplierId = new SelectList(db.Supplier, "SupplierId", "CompanyName");
             return View();
         }
 
@@ -53,12 +53,12 @@ namespace WebAppMvcModel1.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Products.Add(product);
+                db.Product.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.SupplierId = new SelectList(db.Suppliers, "SupplierId", "CompanyName", product.SupplierId);
+            ViewBag.SupplierId = new SelectList(db.Supplier, "SupplierId", "CompanyName", product.SupplierId);
             return View(product);
         }
 
@@ -69,12 +69,12 @@ namespace WebAppMvcModel1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
+            Product product = db.Product.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.SupplierId = new SelectList(db.Suppliers, "SupplierId", "CompanyName", product.SupplierId);
+            ViewBag.SupplierId = new SelectList(db.Supplier, "SupplierId", "CompanyName", product.SupplierId);
             return View(product);
         }
 
@@ -91,7 +91,7 @@ namespace WebAppMvcModel1.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.SupplierId = new SelectList(db.Suppliers, "SupplierId", "CompanyName", product.SupplierId);
+            ViewBag.SupplierId = new SelectList(db.Supplier, "SupplierId", "CompanyName", product.SupplierId);
             return View(product);
         }
 
@@ -102,7 +102,7 @@ namespace WebAppMvcModel1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
+            Product product = db.Product.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
@@ -115,8 +115,8 @@ namespace WebAppMvcModel1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Product product = db.Products.Find(id);
-            db.Products.Remove(product);
+            Product product = db.Product.Find(id);
+            db.Product.Remove(product);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

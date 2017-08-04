@@ -28,7 +28,7 @@ namespace WebAppMvcModel1.Models
                 new Supplier {CompanyName="Steel Magnolia", City="Marsopolis", Country="Mars"}
 
             };
-            suppliers.ForEach(s => context.Suppliers.Add(s));
+            suppliers.ForEach(s => context.Supplier.Add(s));
             context.SaveChanges();
 
             // create product records
@@ -49,15 +49,22 @@ namespace WebAppMvcModel1.Models
                 new Product {Productname="Hokkaido Ramen", SupplierId=suppliers.Single(s => s.CompanyName == "Wakayama Ramen").SupplierId, UnitPrice=0.46 },
                 new Product {Productname="Hiyashi Chūka Ramen", SupplierId=suppliers.Single(s => s.CompanyName == "Wakayama Ramen").SupplierId, UnitPrice=0.45 },
                 new Product {Productname="Hakata Ramen", SupplierId=suppliers.Single(s => s.CompanyName == "Wakayama Ramen").SupplierId, UnitPrice=0.44 },
-                new Product {Productname="Katakana (sword)", SupplierId=suppliers.Single(s => s.CompanyName == "Steel Magnolia").SupplierId, UnitPrice=5.40 },
-                new Product {Productname="Phaser (pistol)", SupplierId=suppliers.Single(s => s.CompanyName == "Steel Magnolia").SupplierId, UnitPrice=5.40 },
-                new Product {Productname="Stunner (rod)", SupplierId=suppliers.Single(s => s.CompanyName == "Steel Magnolia").SupplierId, UnitPrice=5.40 },
-                new Product {Productname="Rail Gun", SupplierId=suppliers.Single(s => s.CompanyName == "Steel Magnolia").SupplierId, UnitPrice=5.40 },
-                new Product {Productname="Gravity Engine", SupplierId=suppliers.Single(s => s.CompanyName == "Steel Magnolia").SupplierId, UnitPrice=5.40 }
+                new Product {Productname="Katakana (sword)", SupplierId=suppliers.Single(s => s.CompanyName == "Steel Magnolia").SupplierId, UnitPrice=13.40 },
+                new Product {Productname="Phaser (pistol)", SupplierId=suppliers.Single(s => s.CompanyName == "Steel Magnolia").SupplierId, UnitPrice=27.40 },
+                new Product {Productname="Stunner (rod)", SupplierId=suppliers.Single(s => s.CompanyName == "Steel Magnolia").SupplierId, UnitPrice=75.40 },
+                new Product {Productname="Rail Gun", SupplierId=suppliers.Single(s => s.CompanyName == "Steel Magnolia").SupplierId, UnitPrice=502.40 },
+                new Product {Productname="Gravity Engine", SupplierId=suppliers.Single(s => s.CompanyName == "Steel Magnolia").SupplierId, UnitPrice=1234.56 }
              };
-            products.ForEach(s => context.Products.Add(s));
+            products.ForEach(s => context.Product.Add(s));
             context.SaveChanges();
 
+            var itemList = new List<ItemList>
+            {
+                new ItemList {Title="Grocery Shopping", ListItemEntry="Bread, Cheese, Chianti, Grapes and Shunka", UnitPrice=14.65 },
+                new ItemList {Title="Things to do", ListItemEntry="Wash the windows, clean the carpets, mop the tiles", UnitPrice=41.57 }
+            };
+            itemList.ForEach(i => context.ItemList.Add(i));
+            context.SaveChanges();
         }
     }
 }

@@ -13,9 +13,14 @@ namespace WebAppMvcModel1.Models
         public myDBContext(string nameOrConnectionString) : base(nameOrConnectionString)
         {
         }
+        public myDBContext() : base()
+        {
+        }
 
-        public DbSet<Supplier> Suppliers { get; set; }
-        public DbSet<Product> Products { get; set; }
+        public DbSet<Supplier> Supplier { get; set; }
+        public DbSet<Product> Product { get; set; }
+
+        public DbSet<ItemList> ItemList { get; set; }
     }
 
     [Table("Supplier")]
@@ -56,6 +61,22 @@ namespace WebAppMvcModel1.Models
         // Navigation property: Implement Product side of the relationship
         // Many products can be supplied by one supplier
         public virtual Supplier Supplier { get; set; }
+    }
+
+    [Table("ItemList")]
+    public class ItemList
+    {
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int ListItemID { get; set; }
+
+        [Display(Name = "Title: ")]
+        public string Title { get; set; }
+        [Display(Name = "Things to do: ")]
+        public string ListItemEntry { get; set; }
+        [Display(Name = "Unit Price: ")]
+        [DataType(DataType.Currency)]
+        public Nullable<double> UnitPrice { get; set; }
     }
 
 }
