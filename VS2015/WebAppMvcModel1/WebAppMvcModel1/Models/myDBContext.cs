@@ -77,6 +77,10 @@ namespace WebAppMvcModel1.Models
         [Display(Name = "Unit Price: ")]
         [DataType(DataType.Currency)]
         public Nullable<double> UnitPrice { get; set; }
+        [Display(Name = "Date Created: ")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
+        public Nullable<DateTime> CreateDate { get; set; }
+
     }
 
 }

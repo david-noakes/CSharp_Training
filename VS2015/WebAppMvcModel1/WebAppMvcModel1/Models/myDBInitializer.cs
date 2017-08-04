@@ -60,8 +60,8 @@ namespace WebAppMvcModel1.Models
 
             var itemList = new List<ItemList>
             {
-                new ItemList {Title="Grocery Shopping", ListItemEntry="Bread, Cheese, Chianti, Grapes and Shunka", UnitPrice=14.65 },
-                new ItemList {Title="Things to do", ListItemEntry="Wash the windows, clean the carpets, mop the tiles", UnitPrice=41.57 }
+                new ItemList {Title="Grocery Shopping", ListItemEntry="Bread, Cheese, Chianti, Grapes and Shunka", UnitPrice=14.65, CreateDate=DateTime.Now},
+                new ItemList {Title="Things to do", ListItemEntry="Wash the windows, clean the carpets, mop the tiles", UnitPrice=41.57, CreateDate=DateTime.Now }
             };
             itemList.ForEach(i => context.ItemList.Add(i));
             context.SaveChanges();

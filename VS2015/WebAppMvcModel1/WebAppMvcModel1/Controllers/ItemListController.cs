@@ -50,6 +50,7 @@ namespace WebAppMvcModel1.Controllers
         {
             if (ModelState.IsValid)
             {
+                itemList.CreateDate = DateTime.Now;
                 db.ItemList.Add(itemList);
                 db.SaveChanges();
                 return RedirectToAction("Index");
