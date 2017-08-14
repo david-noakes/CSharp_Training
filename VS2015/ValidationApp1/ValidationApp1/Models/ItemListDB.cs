@@ -29,12 +29,16 @@ namespace ValidationApp1.Models
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int ListItemId { get; set; }
 
+        [Required]
+        [StringLength(20)]
         [Display(Name = "Title")]
         public string Title { get; set; }
 
+        [Required]
         [Display(Name = "Things To Do")]
         public string ListItemEntry { get; set; }
 
+        [Required]
         [Display(Name = "Complete By")]
         [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime CompleteByDate { get; set; }
