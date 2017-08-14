@@ -10,7 +10,7 @@ namespace WebAppMvcModel1.Models
     {
         private DbContext dbContext;
 
-        public myDBInitializer(DbContext dbContext)
+        public myDBInitializer(DbContext dbContext):base()
         {
             this.dbContext = dbContext;
         }

@@ -1,0 +1,48 @@
+﻿@model ValidationApp1.Models.ItemList
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ItemList</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ListItemEntry)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ListItemEntry)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompleteByDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompleteByDate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
