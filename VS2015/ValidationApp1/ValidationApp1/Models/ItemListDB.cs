@@ -53,18 +53,37 @@ namespace ValidationApp1.Models
         // Override IsValid method to run the validation test
         public override bool IsValid(object value)
         {
-            bool result;
+            bool result = true;
             var testVal = (string)value;
 
-            if (testVal.IndexOf(',') != -1)
+            if (testVal == null)
             {
-                result = true;
+                return false;
             }
-            else
+            if (testVal.IndexOf(',') == -1)
             {
                 result = false;
             }
-
+            //testVal.Replace('!', ' ');
+            //testVal.Replace('@', ' ');
+            //testVal.Replace('#', ' ');
+            //testVal.Replace('$', ' ');
+            //testVal.Replace('%', ' ');
+            //testVal.Replace('^', ' ');
+            //testVal.Replace('&', ' ');
+            //testVal.Replace('*', ' ');
+            //testVal.Replace('(', ' ');
+            //testVal.Replace(')', ' ');
+            //testVal.Replace(',', ' ');
+            //testVal.Replace('.', ' ');
+            //testVal.Replace(';', ' ');
+            //testVal.Replace(':', ' ');
+            char[] cc = new char[] {'!','@','#','$','%','^','&','*','(',')',',','.',';',':' };
+            testVal = testVal.Trim(cc);
+            if (testVal.Length == 0)
+            {
+                result = false;
+            }
             return result;
             //return base.IsValid(value);
         }
