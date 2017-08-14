@@ -29,7 +29,7 @@ namespace ValidationApp1.Models
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int ListItemId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please enter the item title.")]
         [StringLength(20)]
         [Display(Name = "Title")]
         public string Title { get; set; }
