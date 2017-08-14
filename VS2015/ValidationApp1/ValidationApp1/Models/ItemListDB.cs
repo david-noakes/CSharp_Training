@@ -35,6 +35,7 @@ namespace ValidationApp1.Models
         public string Title { get; set; }
 
         [Required]
+        [MustHaveMultipleItems(ErrorMessage = "Please enter more than one item and separate by commas.")]
         [Display(Name = "Things To Do")]
         public string ListItemEntry { get; set; }
 
@@ -44,5 +45,28 @@ namespace ValidationApp1.Models
         public DateTime CompleteByDate { get; set; }
 
 
+    }
+
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
+    public class MustHaveMultipleItemsAttribute : ValidationAttribute
+    {
+        // Override IsValid method to run the validation test
+        public override bool IsValid(object value)
+        {
+            bool result;
+            var testVal = (string)value;
+
+            if (testVal.IndexOf(',') != -1)
+            {
+                result = true;
+            }
+            else
+            {
+                result = false;
+            }
+
+            return result;
+            //return base.IsValid(value);
+        }
     }
 }
