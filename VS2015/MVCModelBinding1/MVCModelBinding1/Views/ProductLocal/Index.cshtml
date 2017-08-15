@@ -1,0 +1,33 @@
+﻿<section>
+    <form id="customBindForm" action="" method="post">
+        <fieldset>
+            <div>
+                <h3> Product Name: </h3>
+            </div>
+            <div>
+                <input id="ProductName" name="ProductName" type="text" />
+            </div> 
+            <div>
+                <h3> Product description: </h3>
+            </div>
+            <div>
+                <input id="ProductDescription" name="ProductDescription" type="text" />
+            </div>
+            <input type="submit" value="Submit" />
+        </fieldset>
+    </form>
+</section>
+<section>
+    <div>
+        <h3> Product Name </h3>
+    </div>
+    <div>
+        @ViewBag.ProdName
+    </div>
+    <div>
+        <h3>Product Description</h3>
+    </div>
+    <div>
+        @ViewBag.ProdDesc
+    </div>
+</section>

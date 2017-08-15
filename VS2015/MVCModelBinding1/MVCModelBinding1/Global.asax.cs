@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using MVCModelBinding1.Models;
 
 namespace MVCModelBinding1
 {
@@ -16,6 +17,9 @@ namespace MVCModelBinding1
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            // Register the custom model binder with MVC runtime
+            ModelBinders.Binders.Add(typeof(ProductLocal), new ProductCustomBinder());
+
         }
     }
 }
