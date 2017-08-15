@@ -1,0 +1,24 @@
+example:
+(localdb)\MSSQLLocalDB
+1. Use SQLServerObjectExplorer or (View -> SQL Server Object Explorer)
+   to create a new database under Databases
+2. Use SQL to create database (eg Northwind.sql) and load any initial database
+3. Create the App   (File -> New Project -> Visual C# -> Web -> ASP.NET Web Application
+   - give it a name
+   - select MVC
+4. Reverse Engineer the model
+   > Project -> add new item
+   > Visual C# -> data -> ADO.NET Entity Data Model
+   - name it NorthWindModel (will have edmx extension)
+   -> EF Designer from database   
+   -> save connection setting as NorthwindEntities (into webConfig)
+   
+   this will generate <table>.cs for each table and view, model and context object
+   
+5. Changes ***
+   modify database using SQL or DBdesigner
+   update the model by rightclicking in empty spot on model diagram
+   -> Update model from database
+   > check the add TAB for new tables
+   > check the refresh tab for existing table changes
+   > check the delete tab for deleted tables
