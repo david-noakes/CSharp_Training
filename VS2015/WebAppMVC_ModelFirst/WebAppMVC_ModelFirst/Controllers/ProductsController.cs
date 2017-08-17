@@ -7,20 +7,34 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebAppMVC_ModelFirst.Models;
+using WebAppMVC_ModelFirst.Repositories;
 
 namespace WebAppMVC_ModelFirst.Controllers
 {
     public class ProductsController : Controller
     {
         private MarketDBContext db = new MarketDBContext();
+        private IProductRepository productRepository;
+
+        //default Constructor
+        public ProductsController()
+        {
+            this.productRepository = new ProductRepository(db);
+        }
+        //Constructor with repository param
+        public ProductsController(IProductRepository productRepository)
+        {
+            this.productRepository = productRepository;
+        }
 
         // GET: Products
         public ActionResult Index()
         {
             //var products = db.Products.Include(p => p.Supplier);
-            var products = (from p in db.Products.Include(p => p.Supplier)
-                            orderby p.ProductName
-                            select p).ToList();
+            //var products = (from p in db.Products.Include(p => p.Supplier)
+            //                orderby p.ProductName
+            //                select p).ToList();
+            var products = productRepository.GetProducts();
             return View(products);
         }
 
@@ -31,7 +45,8 @@ namespace WebAppMVC_ModelFirst.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
+            //Product product = db.Products.Find(id);
+            Product product = productRepository.GetProductById((Guid)id);
             if (product == null)
             {
                 return HttpNotFound();
