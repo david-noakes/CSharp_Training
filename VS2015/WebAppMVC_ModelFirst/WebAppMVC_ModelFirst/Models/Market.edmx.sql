@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 08/17/2017 11:11:33
+-- Date Created: 08/17/2017 14:22:17
 -- Generated from EDMX file: C:\Data\Source\Repos\CSharp_Training\VS2015\WebAppMVC_ModelFirst\WebAppMVC_ModelFirst\Models\Market.edmx
 -- --------------------------------------------------
 
@@ -17,11 +17,20 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_SupplierProduct]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Products] DROP CONSTRAINT [FK_SupplierProduct];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[Suppliers]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Suppliers];
+GO
+IF OBJECT_ID(N'[dbo].[Products]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Products];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -41,7 +50,8 @@ CREATE TABLE [dbo].[Products] (
     [ProductId] uniqueidentifier  NOT NULL,
     [ProductName] nvarchar(max)  NOT NULL,
     [UnitPrice] decimal(18,0)  NOT NULL,
-    [SupplierId] uniqueidentifier  NOT NULL
+    [SupplierId] uniqueidentifier  NOT NULL,
+    [UnitsInStock] int  NULL
 );
 GO
 

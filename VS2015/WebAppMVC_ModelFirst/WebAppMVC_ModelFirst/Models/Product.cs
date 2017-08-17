@@ -18,6 +18,7 @@ namespace WebAppMVC_ModelFirst.Models
         public string ProductName { get; set; }
         public decimal UnitPrice { get; set; }
         public System.Guid SupplierId { get; set; }
+        public Nullable<int> UnitsInStock { get; set; }
     
         public virtual Supplier Supplier { get; set; }
     }

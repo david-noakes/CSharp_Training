@@ -30,6 +30,7 @@
     <Property Name="ProductName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="UnitPrice" Type="decimal" Nullable="false" />
     <Property Name="SupplierId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UnitsInStock" Type="int" Nullable="true" />
   </EntityType>
   <Association Name="SupplierProduct">
     <End Role="Supplier" Type="Market.Store.Suppliers" Multiplicity="1" />
@@ -74,6 +75,7 @@
           <Property Name="UnitPrice" Type="Decimal" Nullable="false" />
           <NavigationProperty Name="Supplier" Relationship="Market.SupplierProduct" FromRole="Product" ToRole="Supplier" />
           <Property Name="SupplierId" Type="Guid" Nullable="false" />
+          <Property Name="UnitsInStock" Type="Int32" Nullable="true" />
         </EntityType>
         <Association Name="SupplierProduct">
           <End Type="Market.Supplier" Role="Supplier" Multiplicity="1" />
@@ -110,6 +112,7 @@
           <ScalarProperty Name="ProductName" ColumnName="ProductName" />
           <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
           <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+          <ScalarProperty Name="UnitsInStock" ColumnName="UnitsInStock" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
