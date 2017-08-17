@@ -19,7 +19,11 @@ namespace MVCModelBinding1.Controllers
         {
             //var products = db.Products.Include(p => p.Category).Include(p => p.Supplier);
             //return View(products.ToList());
-            var products = db.Products.ToList();
+            //var products = db.Products.ToList();
+            var products = (from p in db.Products
+                             orderby p.ProductName
+                             select p).Include(p => p.Supplier).ToList();
+
             return View("Index", products);
         }
 

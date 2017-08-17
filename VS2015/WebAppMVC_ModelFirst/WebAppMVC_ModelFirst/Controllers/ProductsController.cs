@@ -17,8 +17,11 @@ namespace WebAppMVC_ModelFirst.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            var products = db.Products.Include(p => p.Supplier);
-            return View(products.ToList());
+            //var products = db.Products.Include(p => p.Supplier);
+            var products = (from p in db.Products.Include(p => p.Supplier)
+                            orderby p.ProductName
+                            select p).ToList();
+            return View(products);
         }
 
         // GET: Products/Details/5

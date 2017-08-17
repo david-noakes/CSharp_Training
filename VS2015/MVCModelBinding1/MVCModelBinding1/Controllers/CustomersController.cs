@@ -6,115 +6,114 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using WebAppMVC_ModelFirst.Models;
+using MVCModelBinding1;
 
-namespace WebAppMVC_ModelFirst.Controllers
+namespace MVCModelBinding1.Controllers
 {
-    public class SuppliersController : Controller
+    public class CustomersController : Controller
     {
-        private MarketDBContext db = new MarketDBContext();
+        private NorthwindEntities db = new NorthwindEntities();
 
-        // GET: Suppliers
+        // GET: Customers
         public ActionResult Index()
         {
-            var supplier = (from s in db.Suppliers
-                            orderby s.CompanyName
-                            select s).ToList();
-            return View(supplier);
+            var customers = (from c in db.Customers
+                             orderby c.CompanyName
+                             select c).ToList();
+            return View("Index", customers);
         }
 
-        // GET: Suppliers/Details/5
-        public ActionResult Details(Guid? id)
+        // GET: Customers/Details/5
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Supplier supplier = db.Suppliers.Find(id);
-            if (supplier == null)
+            Customer customer = db.Customers.Find(id);
+            if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(supplier);
+            return View(customer);
         }
 
-        // GET: Suppliers/Create
+        // GET: Customers/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Suppliers/Create
+        // POST: Customers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SupplierId,CompanyName,City,Country")] Supplier supplier)
+        public ActionResult Create([Bind(Include = "CustomerID,CompanyName,ContactName,ContactTitle,Address,City,Region,PostalCode,Country,Phone,Fax")] Customer customer)
         {
             if (ModelState.IsValid)
             {
-                supplier.SupplierId = Guid.NewGuid();
-                db.Suppliers.Add(supplier);
+                db.Customers.Add(customer);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(supplier);
+            return View(customer);
         }
 
-        // GET: Suppliers/Edit/5
-        public ActionResult Edit(Guid? id)
+        // GET: Customers/Edit/5
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Supplier supplier = db.Suppliers.Find(id);
-            if (supplier == null)
+            Customer customer = db.Customers.Find(id);
+            if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(supplier);
+            return View(customer);
         }
 
-        // POST: Suppliers/Edit/5
+        // POST: Customers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SupplierId,CompanyName,City,Country")] Supplier supplier)
+        public ActionResult Edit([Bind(Include = "CustomerID,CompanyName,ContactName,ContactTitle,Address,City,Region,PostalCode,Country,Phone,Fax")] Customer customer)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(supplier).State = EntityState.Modified;
+                db.Entry(customer).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(supplier);
+            return View(customer);
         }
 
-        // GET: Suppliers/Delete/5
-        public ActionResult Delete(Guid? id)
+        // GET: Customers/Delete/5
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Supplier supplier = db.Suppliers.Find(id);
-            if (supplier == null)
+            Customer customer = db.Customers.Find(id);
+            if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(supplier);
+            return View(customer);
         }
 
-        // POST: Suppliers/Delete/5
+        // POST: Customers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(Guid id)
+        public ActionResult DeleteConfirmed(string id)
         {
-            Supplier supplier = db.Suppliers.Find(id);
-            db.Suppliers.Remove(supplier);
+            Customer customer = db.Customers.Find(id);
+            db.Customers.Remove(customer);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
