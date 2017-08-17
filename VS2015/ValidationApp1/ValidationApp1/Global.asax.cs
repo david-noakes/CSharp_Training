@@ -19,8 +19,8 @@ namespace ValidationApp1
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             // Create and seed database using data context
-            Database.SetInitializer<ItemListDB>(new ItemListInitializer(new DbContext("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ValidationApp1;Integrated Security=True")));
-            //    remove now it is created
+            // Database.SetInitializer<ItemListDB>(new ItemListInitializer(new DbContext("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ValidationApp1;Integrated Security=True")));
+            // remove now it is created
         }
     }
 }
