@@ -17,8 +17,10 @@ namespace MVCModelBinding1.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            var products = db.Products.Include(p => p.Category).Include(p => p.Supplier);
-            return View(products.ToList());
+            //var products = db.Products.Include(p => p.Category).Include(p => p.Supplier);
+            //return View(products.ToList());
+            var products = db.Products.ToList();
+            return View("Index", products);
         }
 
         // GET: Products/Details/5
