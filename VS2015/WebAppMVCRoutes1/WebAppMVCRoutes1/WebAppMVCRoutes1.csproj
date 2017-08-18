@@ -351,7 +351,7 @@
       <DependentUpon>northwindLocal.edmx</DependentUpon>
     </Content>
     <Content Include="Views\Orders\Index.cshtml" />
-    <Content Include="Views\Orders\Details.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Areas\Mechanics\Views\web.config" />
     <Content Include="Areas\Customers\Views\web.config" />
     <Content Include="Areas\Customers\Views\_ViewStart.cshtml" />
