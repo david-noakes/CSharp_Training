@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace WebAppMVCRoutes1.Controllers
 {
+    [Authorize(Users ="david@b.c, danny@b.c")]
     public class HomeController : Controller
     {
         // GET: Home
@@ -26,6 +27,8 @@ namespace WebAppMVCRoutes1.Controllers
             return View();
         }
 
+        [OverrideAuthorization]
+        [Authorize(Users = "danny@b.c")]
         // GET: Home
         public ActionResult About()
         {
