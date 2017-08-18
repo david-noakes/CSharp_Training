@@ -14,66 +14,33 @@ namespace WebAppMVCRoutes1
             // start with specifics and work up to the generic
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            // use constraints to restrict what matches
             routes.MapRoute(
                 name: "HomeRoute",
-                url: "Home",
-                defaults: new { controller = "Home", action = "Index" }
-            );
-
-            routes.MapRoute(
-                name: "HomeAbout",
-                url: "Home/About",
-                defaults: new { controller = "Home", action = "About" }
-            );
-
-            routes.MapRoute(
-                name: "HomeContact",
-                url: "Home/Contact",
-                defaults: new { controller = "Home", action = "Contact" }
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                constraints: new { controller = "^Home$", action = "^Index$|^About$|^Contact$"}
             );
 
             routes.MapRoute(
                 name: "OrderRoute",
-                url: "Orders",
-                defaults: new { controller = "Orders", action = "Index" }
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Orders", action = "Index", id = UrlParameter.Optional },
+                constraints: new { controller = "^Orders$",
+                                   action = "^Index$|^Details$|^Edit$|^Create$|^Delete$",
+                                   id = @"^[0-9]+$" }
             );
-
-            routes.MapRoute(
-                name: "OrderIndex",
-                url: "Orders/Index",
-                defaults: new { controller = "Orders", action = "Index" }
-            );
-
-            // this one needs a constraint to ensure that home/about is not caught
-            routes.MapRoute(
-                name: "OrderById",
-                url: "Orders/{id}",
-                defaults: new { controller = "Orders", action = "Details"},
-                constraints: new { id = @"^[0-9]+$" }
-                );
 
             routes.MapRoute(
                 name: "ProductsRoute",
-                url: "Products",
-                defaults: new { controller = "Products", action = "Index" }
-            );
-
-            routes.MapRoute(
-                name: "ProductsIndex",
-                url: "Products/Index",
-                defaults: new { controller = "Products", action = "Index" }
-            );
-
-            routes.MapRoute(
-                name: "ProductsListProducts",
-                url: "Products/ListProducts",
-                defaults: new { controller = "Products", action = "ListProducts" }
-            );
-
-            routes.MapRoute(
-                name: "ProductsList",
-                url: "Products/{action}",
-                defaults: new { controller = "Products", action = "ListProducts" }
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Products", action = "Index", id = UrlParameter.Optional },
+                constraints: new
+                {
+                    controller = "^Products$",
+                    action = "^Index$|^Details$|^Edit$|^Create$|^Delete$|^List.*$",
+                    id = @"^[0-9]+$"
+                }
             );
 
             routes.MapRoute(
