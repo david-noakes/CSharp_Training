@@ -20,7 +20,8 @@ namespace WebAppMVCRoutes1
                 name: "HomeRoute",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                constraints: new { controller = "^Home$", action = "^Index$|^About$|^Contact$"}
+                constraints: new { controller = "^Home$", action = "^Index$|^About$|^Contact$"},
+                namespaces: new string[] { "WebAppMVCRoutes1.Controllers" }
             );
 
             routes.MapRoute(
@@ -47,7 +48,8 @@ namespace WebAppMVCRoutes1
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                namespaces: new string[] { "WebAppMVCRoutes1.Controllers" }
             );
         }
     }

@@ -4,11 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace WebAppMVCRoutes1.Controllers
+namespace WebAppMVCRoutes1.Areas.Mechanics.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
+        // GET: Mechanics/Home
         public ActionResult Index()
         {
             var currentAction = RouteData.Values["action"];
@@ -26,35 +26,19 @@ namespace WebAppMVCRoutes1.Controllers
             return View();
         }
 
-        // GET: Home
-        public ActionResult About()
-        {
-            return View();
-        }
-
-        // GET: Home
-        public ActionResult Contact()
-        {
-            var currentAction = RouteData.Values["action"];
-            var currentController = RouteData.Values["controller"];
-            var pageMsg = "Controller = " + currentController + " Action = " + currentAction;
-            ViewBag.Message = pageMsg;
-            return View();
-        }
-
-        // GET: Home/Details/5
+        // GET: Mechanics/Home/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Home/Create
+        // GET: Mechanics/Home/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Home/Create
+        // POST: Mechanics/Home/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -70,13 +54,13 @@ namespace WebAppMVCRoutes1.Controllers
             }
         }
 
-        // GET: Home/Edit/5
+        // GET: Mechanics/Home/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Home/Edit/5
+        // POST: Mechanics/Home/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -92,13 +76,13 @@ namespace WebAppMVCRoutes1.Controllers
             }
         }
 
-        // GET: Home/Delete/5
+        // GET: Mechanics/Home/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Home/Delete/5
+        // POST: Mechanics/Home/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
