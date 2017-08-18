@@ -6,39 +6,30 @@ using System.Web.Mvc;
 
 namespace WebAppMVCRoutes1.Controllers
 {
-    public class HomeController : Controller
+    public class OrdersController : Controller
     {
-        // GET: Home
+        private NorthwindEntities db = new NorthwindEntities();
+        // GET: Orders
         public ActionResult Index()
         {
-            return View();
+            return View(db.Orders.ToList());
         }
 
-        // GET: Home
-        public ActionResult About()
-        {
-            return View();
-        }
-
-        // GET: Home
-        public ActionResult Contact()
-        {
-            return View();
-        }
-
-        // GET: Home/Details/5
+        // GET: Orders/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var order = db.Orders.Find(id);
+            if (order == null) { return HttpNotFound(); }
+            return View(order);
         }
 
-        // GET: Home/Create
+        // GET: Orders/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Home/Create
+        // POST: Orders/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -54,13 +45,13 @@ namespace WebAppMVCRoutes1.Controllers
             }
         }
 
-        // GET: Home/Edit/5
+        // GET: Orders/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Home/Edit/5
+        // POST: Orders/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -76,13 +67,13 @@ namespace WebAppMVCRoutes1.Controllers
             }
         }
 
-        // GET: Home/Delete/5
+        // GET: Orders/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Home/Delete/5
+        // POST: Orders/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
