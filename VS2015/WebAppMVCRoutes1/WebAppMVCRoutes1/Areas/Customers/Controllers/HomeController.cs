@@ -23,6 +23,12 @@ namespace WebAppMVCRoutes1.Areas.Customers.Controllers
             ViewBag.Area = area;
             ViewBag.Controller = currentController;
             ViewBag.Action = currentAction;
+
+            var redirectFlag = false; // set to true to redirect
+            if (redirectFlag)
+            {
+                return RedirectToAction("Index", "Home", new { area = "Mechanics" });
+            }
             return View();
         }
 
