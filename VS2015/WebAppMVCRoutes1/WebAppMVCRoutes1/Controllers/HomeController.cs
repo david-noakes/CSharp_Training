@@ -23,6 +23,10 @@ namespace WebAppMVCRoutes1.Controllers
         // GET: Home
         public ActionResult Contact()
         {
+            var currentAction = RouteData.Values["action"];
+            var currentController = RouteData.Values["controller"];
+            var pageMsg = "Controller = " + currentController + " Action = " + currentAction;
+            ViewBag.Message = pageMsg;
             return View();
         }
 
