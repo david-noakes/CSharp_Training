@@ -13,6 +13,7 @@ namespace WebAppMVCRoutes1
         {
             // start with specifics and work up to the generic
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute("php-app/{*pathInfo}");
 
             // use constraints to restrict what matches
             routes.MapRoute(
