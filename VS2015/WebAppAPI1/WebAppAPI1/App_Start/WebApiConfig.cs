@@ -24,7 +24,7 @@ namespace WebAppAPI1
                 name: "CustomApi",
                 routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new {id = RouteParameter.Optional},
-                constraints: new { controller = "^values$", action = "^showallvalues$|^showvaluebyid$" }
+                constraints: new { controller = "^values$", action = "^showallvalues$|^showvaluebyid$|^retrieve.*" }
                 );
 
             config.Routes.MapHttpRoute(

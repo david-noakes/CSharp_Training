@@ -24,17 +24,38 @@ namespace WebAppAPI1.Controllers
             return "value";
         }
 
-        // GET api/values
+        // GET api/values/retrievevalues
+        [HttpGet]
+        [ActionName("RetrieveValues")]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new string[] { "retrieve value1", "Retrieve value2" };
         }
 
-        // GET api/values/5
+        // GET api/values/retrievebyid/5
+        [HttpGet]
+        [ActionName("RetrieveById")]
         public string Get(int id)
         {
             //return "value";
-            return "GetById: " + GetPrivate();
+            return "RetrieveById: " + GetPrivate();
+        }
+
+        // GET api/values
+        [HttpGet]
+        [ActionName("Get")]
+        public IEnumerable<string> GetIt()
+        {
+            return new string[] { "Getit value1", "getit value2" };
+        }
+
+        // GET api/values/5
+        [HttpGet]
+        [ActionName("Get")]
+        public string GetIt(int id)
+        {
+            //return "value";
+            return "GetIt: " + GetPrivate();
         }
 
         [NonAction]
