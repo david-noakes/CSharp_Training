@@ -11,13 +11,15 @@ namespace WebAppAPI1.Controllers
     public class ValuesController : ApiController
     {
         // GET api/values
-        public IEnumerable<string> Get()
+        [HttpGet]
+        public IEnumerable<string> ShowAllValues()
         {
             return new string[] { "value1", "value2" };
         }
 
         // GET api/values/5
-        public string Get(int id)
+        [HttpGet]
+        public string ShowValueById(int id)
         {
             return "value";
         }
