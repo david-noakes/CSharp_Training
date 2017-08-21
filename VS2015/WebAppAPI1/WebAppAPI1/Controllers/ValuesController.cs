@@ -33,7 +33,15 @@ namespace WebAppAPI1.Controllers
         // GET api/values/5
         public string Get(int id)
         {
-            return "value";
+            //return "value";
+            return "GetById: " + GetPrivate();
+        }
+
+        [NonAction]
+        // needed to stop GetPrivate() from matching with Get()
+        public string GetPrivate()
+        {
+            return "value from GetPrivate";
         }
 
         // POST api/values
