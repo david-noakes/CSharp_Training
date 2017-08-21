@@ -10,16 +10,28 @@ namespace WebAppAPI1.Controllers
     //[Authorize]
     public class ValuesController : ApiController
     {
-        // GET api/values
+        // GET api/values/showallvalues
         [HttpGet]
         public IEnumerable<string> ShowAllValues()
         {
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/values/5
+        // GET api/values/showvaluebyid/5
         [HttpGet]
         public string ShowValueById(int id)
+        {
+            return "value";
+        }
+
+        // GET api/values
+        public IEnumerable<string> Get()
+        {
+            return new string[] { "value1", "value2" };
+        }
+
+        // GET api/values/5
+        public string Get(int id)
         {
             return "value";
         }
