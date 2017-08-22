@@ -3,7 +3,7 @@
         <div class="featured">
             <div class="content-wrapper">
                 <hgroup class="title">
-                    <h1>Http GET and PUT Demo</h1>
+                    <h1>Http GET, PUT and Post Demo</h1>
                 </hgroup>
                 <div>
                     <p>Get all values: @Url.HttpRouteUrl("DefaultApi", new { controller = "values" })</p>
@@ -28,6 +28,9 @@
             <div id="suppliersTableRender"> </div>
         </div>
         <div id="supplierEditRender"></div>
+        <div>
+            <input type="button" id="createSupplier" value="Create a Supplier" />
+        </div>
     </section>
 </div>
 @*Template: Suppliers Table*@
@@ -95,13 +98,23 @@
                 data: supplier // Web API handles form encoding to deserialise supplier object
             });
         };
+        // Add new supplier to database
+        var addSupplier = function (supplier) {
+            return $.ajax({
+                url: uri,
+                type: "POST",
+                data: supplier  // web API handles form encoding to deserialize supplier object
+            });
+        };
         // expose functions from appServer
         return {
             getSuppliers: getSuppliers,
             getSupplierById: getSupplierById,
-            updateSupplier: updateSupplier
+            updateSupplier: updateSupplier,
+            addSupplier: addSupplier
         };
     }()); // end appServer
+
     // create an unnamed module that carries out the server functions when document is ready
     (function () {
         var refresh = function () {
@@ -153,6 +166,9 @@
             // Display the retrieved supplier data for edit
             appServer.getSupplierById(id).done(displaySupplierForEdit);
         };
+        /*
+        Render template form with content for editing supplier
+        */
         var displaySupplierForEdit = function (data, status, jqXHR) {
             // report status of http response
             var $status = $('#httpResponse');
@@ -172,8 +188,28 @@
                 "City": $('#city').val(),
                 "Country": $('#country').val()
             };
-            appServer.updateSupplier(supplier.SupplierId, supplier).done(refresh, clearEditForm);
+
+            // decide whether to create or update
+            var decision;
+            if (supplier.SupplierId == 0) {
+                decision = appServer.addSupplier(supplier);
+            } else {
+                appServer.updateSupplier(supplier.SupplierId, supplier);
+            }
+            decision.done(refresh, clearEditForm);
             return false;
+        };
+        /*
+        Create a new supplier
+        */
+        var createSupplier = function () {
+            var supplier = {
+                "SupplierId": 0,
+                "CompanyName": "",
+                "City": "",
+                "Country": ""
+            };
+            displaySupplierForEdit(supplier);
         };
         /*
         Clear template form after successful save
@@ -187,6 +223,7 @@
         var setupEvtListeners = function () {
             $(document).on("click", ".editSupplier", editSupplier);
             $(document).on("click", "#saveSupplier", saveSupplier);
+            $(document).on("click", "#createSupplier", createSupplier);
         };
 
         $(function () {
