@@ -3,7 +3,7 @@
         <div class="featured">
             <div class="content-wrapper">
                 <hgroup class="title">
-                    <h1>Http GET, PUT and Post Demo</h1>
+                    <h1>Http GET, PUT, Post and DELETE Demo </h1>
                 </hgroup>
                 <div>
                     <p>Get all values: @Url.HttpRouteUrl("DefaultApi", new { controller = "values" })</p>
@@ -106,12 +106,20 @@
                 data: supplier  // web API handles form encoding to deserialize supplier object
             });
         };
+        // Remove an existing supplier from the database
+        var removeSupplier = function (id) {
+            return $.ajax({
+                url: uri + "/" + id,
+                type: "DELETE"
+            })
+        };
         // expose functions from appServer
         return {
             getSuppliers: getSuppliers,
             getSupplierById: getSupplierById,
             updateSupplier: updateSupplier,
-            addSupplier: addSupplier
+            addSupplier: addSupplier,
+            removeSupplier: removeSupplier
         };
     }()); // end appServer
 
@@ -212,6 +220,13 @@
             displaySupplierForEdit(supplier);
         };
         /*
+        Delete an existing supplier
+        */
+        var deleteSupplier = function () {
+            var id = getSupId(this);
+            appServer.removeSupplier(id).done(refresh);
+        };
+        /*
         Clear template form after successful save
         */
         var clearEditForm = function () {
@@ -223,6 +238,7 @@
         var setupEvtListeners = function () {
             $(document).on("click", ".editSupplier", editSupplier);
             $(document).on("click", "#saveSupplier", saveSupplier);
+            $(document).on("click", ".deleteSupplier", deleteSupplier);
             $(document).on("click", "#createSupplier", createSupplier);
         };
 
@@ -231,10 +247,6 @@
             compileTemplates();  // compile Handlebars templates
             refresh();           // retrieve all suppliers
         });
-        //setupEvtListeners(); // wire up button click events
-        //compileTemplates();  // compile Handlebars templates
-        //refresh();           // retrieve all suppliers
-
     } () );
 </script>
     
