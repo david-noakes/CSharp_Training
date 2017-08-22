@@ -58,7 +58,7 @@
 @*Template: Supplier Edit Form*@
 <script id="supplierEdit" type="text/html">
     <form>
-        <input type="hidden" name="SupplierId" id = supplierId value="{{SupplierId}}" />
+        <input type="hidden" name="SupplierId" id = supplierid value="{{SupplierId}}" />
         <label for="companyname">Company Name: </label>
         <input type="text" name="CompanyName" id="companyname" value="{{CompanyName}}" />
         <label for="city">City: </label>
@@ -170,7 +170,7 @@
                 "SupplierId": $('#supplierid').val(),
                 "CompanyName": $('#companyname').val(),
                 "City": $('#city').val(),
-                "Country": $('#country')
+                "Country": $('#country').val()
             };
             appServer.updateSupplier(supplier.SupplierId, supplier).done(refresh, clearEditForm);
             return false;
