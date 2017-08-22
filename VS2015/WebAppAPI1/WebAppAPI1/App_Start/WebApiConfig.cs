@@ -28,9 +28,23 @@ namespace WebAppAPI1
                 );
 
             config.Routes.MapHttpRoute(
+                name: "SupplierPutApi",
+                routeTemplate: "api/suppliers/put/{id}",
+                defaults: new { controller = "Suppliers", action = "Put", id = RouteParameter.Optional },
+                constraints: new { controller = "^suppliers$" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "SupplierApi",
+                routeTemplate: "api/suppliers/{id}",
+                defaults: new { controller = "Suppliers", id = RouteParameter.Optional },
+                constraints: new { controller = "^suppliers$" }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "CustomValueApi",
                 routeTemplate: "api/{controller}/{id}",
-                defaults: new { action = "get", id = RouteParameter.Optional },
+                defaults: new { action = "get" },
                 constraints: new { id = @"^[0-9]+$" }
             );
 

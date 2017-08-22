@@ -41,6 +41,8 @@ namespace WebAppAPI1.Controllers
 
         // PUT: api/Suppliers/5
         [ResponseType(typeof(void))]
+        [HttpPut]
+        [ActionName("Put")]
         public IHttpActionResult PutSupplier(int id, Supplier supplier)
         {
             if (!ModelState.IsValid)

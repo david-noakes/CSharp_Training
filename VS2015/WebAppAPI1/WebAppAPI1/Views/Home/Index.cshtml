@@ -1,30 +1,204 @@
-﻿<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+﻿<div id="body">
+    <section>
+        <div class="featured">
+            <div class="content-wrapper">
+                <hgroup class="title">
+                    <h1>Http GET and PUT Demo</h1>
+                </hgroup>
+                <div>
+                    <p>Get all values: @Url.HttpRouteUrl("DefaultApi", new { controller = "values" })</p>
+                    <p>Get all suppliers: @Url.HttpRouteUrl("DefaultApi", new { controller = "suppliers" })</p>
+                </div>
+                <div>
+                    <p>Get one value: @Url.HttpRouteUrl("DefaultApi", new { controller = "values", id = 2 })</p>
+                    <p>Get one supplier: @Url.HttpRouteUrl("DefaultApi", new { controller = "suppliers", id = 2 })</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content-wrapper main-content clear-fix">
+        <div>
+            <h2>HTTP response status</h2>
+            <div id="httpResponseStatus">
+                No HTTP response received as yet
+            </div>
+        </div>
+        <div>
+            <h2>Suppliers List</h2>
+            <div id="suppliersTableRender"> </div>
+        </div>
+        <div id="supplierEditRender"></div>
+    </section>
 </div>
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
-        a broad range of clients, including browsers and mobile devices. ASP.NET Web API
-        is an ideal platform for building RESTful applications on the .NET Framework.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301870">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301871">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301872">Learn more &raquo;</a></p>
-    </div>
-    <div>
-        Get all values: @Url.HttpRouteUrl("DefaultApi", new { controller = "values"} )
-    </div>
-    <div>
-        Get all values: @Url.HttpRouteUrl("DefaultApi", new { controller = "values", id = 2 })
-    </div>
-</div>
+@*Template: Suppliers Table*@
+<script id="suppliersTable" type="text/html">
+    <table>
+        <thead>
+            <tr>
+                <th>Company</th>
+                <th>City</th>
+                <th>Country</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each supplier}}
+            <tr data-id="{{SupplierId}}">
+                <td>{{CompanyName}}</td>
+                <td>{{City}}</td>
+                <td>{{Country}}</td>
+                <td>
+                    <input type="button" class="editSupplier" value="Edit"/>
+                    <input type="button" class="deleteSupplier" value="Delete"/>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</script>
+@*Template: Supplier Edit Form*@
+<script id="supplierEdit" type="text/html">
+    <form>
+        <input type="hidden" name="SupplierId" id = supplierId value="{{SupplierId}}" />
+        <label for="companyname">Company Name: </label>
+        <input type="text" name="CompanyName" id="companyname" value="{{CompanyName}}" />
+        <label for="city">City: </label>
+        <input type="text" name="City" id="city" value="{{City}}" />
+        <label for="country">Country: </label>
+        <input type="text" name="Country" id="country" value="{{Country}}" />
+        <input type="submit" id="saveSupplier" value="Submit" />
+    </form>
+</script>
+@section scripts{
+<script>
+    // Create application server module
+    var appServer = (function () {
+        var uri = "/api/suppliers"
+        // get all suppliers from the database
+        var getSuppliers = function () {
+            return $.ajax({
+                url: uri,
+                type: "GET"
+            });
+        }; // end getSuppliers
+        // get specific supplier by id
+        var getSupplierById = function (id) {
+            return $.ajax({
+                url: uri + "/" + id,
+                type: "GET"
+            });
+        }; // end getSupplierById
+        // update existing supplier
+        var updateSupplier = function (id, supplier) {
+            return $.ajax({
+                url: uri + "/" + id,
+                type: "PUT",
+                data: supplier // Web API handles form encoding to deserialise supplier object
+            });
+        };
+        // expose functions from appServer
+        return {
+            getSuppliers: getSuppliers,
+            getSupplierById: getSupplierById,
+            updateSupplier: updateSupplier
+        };
+    }()); // end appServer
+    // create an unnamed module that carries out the server functions when document is ready
+    (function () {
+        var refresh = function () {
+            appServer.getSuppliers().done(displayAllSuppliers).fail(displayErrors);
+        };
+        // create templates storage variable
+        var templates = {};
+        /*
+        compile handlebars templates
+        */
+        var compileTemplates = function () {
+            // compile templates fr suppliers table
+            templates.suppliersTable = Handlebars.compile($('#suppliersTable').html());
+            // compile templates for suppliers edit form
+            templates.supplierEdit = Handlebars.compile($('#supplierEdit').html());
+        };
+        /*
+        Display all existing suppliers
+        */
+        var displayAllSuppliers = function (data, status, jqXHR) {
+            // report status of HTTP response
+            var $status = $('#httpResponseStatus');
+            $status.html('HTTP response received with status: ' + status);
+            // Pass response data se supplier object to template
+            var output = templates.suppliersTable({ supplier: data });
+            // Display template containing data
+            $('#suppliersTableRender').html(output);
+        };
+        /*
+        Display status and error message for failed response
+        */
+        var displayErrors = function (jqXHR, status, error) {
+            var $status = $('#httpResponsestatus');
+            $status.html('Request failed. Status: ' + status + '; Error: ' + error);
+        };
+        /*
+        Get supplier id
+        */
+        var getSupId = function (elem) {
+            // Get Id value from data-id attribute
+            return $(elem).parents("tr").attr("data-id");
+        };
+        /*
+        Retrieve supplier by id for edit
+        */
+        var editSupplier = function () {
+            // get the id of the row for the button that was clicked
+            var id = getSupId(this);
+            // Display the retrieved supplier data for edit
+            appServer.getSupplierById(id).done(displaySupplierForEdit);
+        };
+        var displaySupplierForEdit = function (data, status, jqXHR) {
+            // report status of http response
+            var $status = $('#httpResponse');
+            $status.html('HTTP response for single supplier received with status: ' + status);
+            // Pass response data as supplier object to template
+            var output = templates.supplierEdit(data);
+            // Display template containing data
+            $('#supplierEditRender').html(output);
+        };
+        /*
+        Save edited supplier
+        */
+        var saveSupplier = function () {
+            var supplier = {
+                "SupplierId": $('#supplierid').val(),
+                "CompanyName": $('#companyname').val(),
+                "City": $('#city').val(),
+                "Country": $('#country')
+            };
+            appServer.updateSupplier(supplier.SupplierId, supplier).done(refresh, clearEditForm);
+            return false;
+        };
+        /*
+        Clear template form after successful save
+        */
+        var clearEditForm = function () {
+            $('#supplierEditRender').empty();
+        };
+        /*
+        Wire up button click events for DOM objects that don't yet exist using jQuery.on()
+        */
+        var setupEvtListeners = function () {
+            $(document).on("click", ".editSupplier", editSupplier);
+            $(document).on("click", "#saveSupplier", saveSupplier);
+        };
+
+        $(function () {
+            setupEvtListeners(); // wire up button click events
+            compileTemplates();  // compile Handlebars templates
+            refresh();           // retrieve all suppliers
+        });
+        //setupEvtListeners(); // wire up button click events
+        //compileTemplates();  // compile Handlebars templates
+        //refresh();           // retrieve all suppliers
+
+    } () );
+</script>
+    
+}
