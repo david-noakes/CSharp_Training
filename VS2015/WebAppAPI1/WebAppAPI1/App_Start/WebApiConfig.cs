@@ -20,19 +20,19 @@ namespace WebAppAPI1
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            //config.Routes.MapHttpRoute(
-            //    name: "CustomApi",
-            //    routeTemplate: "api/{controller}/{action}/{id}",
-            //    defaults: new {id = RouteParameter.Optional},
-            //    constraints: new { controller = "^values$", action = "^showallvalues$|^showvaluebyid$|^retrieve.*" }
-            //    );
+            config.Routes.MapHttpRoute(
+                name: "CustomApi",
+                routeTemplate: "api/{controller}/{action}/{id}",
+                defaults: new { id = RouteParameter.Optional },
+                constraints: new { controller = "^values$", action = "^showallvalues$|^showvaluebyid$|^retrieve.*" }
+                );
 
-            //config.Routes.MapHttpRoute(
-            //    name: "SupplierApi",
-            //    routeTemplate: "api/suppliers/{id}",
-            //    defaults: new { controller = "Suppliers", id = RouteParameter.Optional },
-            //    constraints: new { controller = "^suppliers$" }
-            //);
+            config.Routes.MapHttpRoute(
+                name: "SupplierApi",
+                routeTemplate: "api/suppliers/{id}",
+                defaults: new { controller = "Suppliers", id = RouteParameter.Optional },
+                constraints: new { controller = "^suppliers$" }
+            );
 
             //config.Routes.MapHttpRoute(
             //    name: "CustomValueApi",
