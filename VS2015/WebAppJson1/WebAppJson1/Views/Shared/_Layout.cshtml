@@ -38,11 +38,13 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     <script>
-        var uri = 'api/suppliers';
+        var surl = 'api/suppliers';
         var $sLC = $('#suppliers');
+        var purl = 'api/products';
+        var $pC = $('#products');
         $(document).ready(function () {
             // select the supplier list container
-            $.getJSON(uri).done(function (data) {
+            $.getJSON(surl).done(function (data) {
                 // empty the container
                 $sLC.empty();
                 var xs = '';
@@ -60,15 +62,8 @@
             })
             .fail(function (xhr, status, error) {
                 $sLC.html('Error: ' + error);
-            });
-        });
-    </script>
-    <script>
-        var uri = 'api/products';
-        // select the product list container
-        var $pC = $('#products');
-        $(document).ready(function () {
-            $.getJSON(uri).done(function (proddata) {
+            }),
+            $.getJSON(purl).done(function (proddata) {
                 // empty the container
                 $pC.empty();
                 var ys = '';
