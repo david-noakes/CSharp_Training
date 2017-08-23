@@ -22,7 +22,7 @@ namespace WebAppJson1
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             // Create and seed database using data context
             //Database.SetInitializer<TheDBContext>(new TheDBInitializer(new TheDBContext(TheDBContext.theConnectionString)));
-            Database.SetInitializer<TheDBContext>(new TheDBInitializer(new TheDBContext(TheDBContext.theConnectionString)));
+            Database.SetInitializer<TheDBContext>(new TheDBInitializer());
             // remove now it is created
 
         }
