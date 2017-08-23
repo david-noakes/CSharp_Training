@@ -33,11 +33,18 @@ namespace WebAppJson1
             var json = mediaTypeFormatters.JsonFormatter;
             var xml = mediaTypeFormatters.XmlFormatter;
 
-            // remove XML formatter
-            mediaTypeFormatters.Remove(xml);
-
             // Set JSON formatter to write indented JSON
             json.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
+
+            // set XML formattwe to write indented XML
+            xml.Indent = true;
+
+            // remove XML formatter
+            //mediaTypeFormatters.Remove(xml);
+            // OR remove json for xml
+            mediaTypeFormatters.Remove(json);
+
+
         }
     }
 }
