@@ -19,7 +19,8 @@ namespace WebAppJson1.Controllers
         // GET: api/Suppliers
         public IQueryable<Supplier> GetSupplier()
         {
-            return db.Supplier;
+            var sup = db.Supplier.AsQueryable();
+            return db.Supplier.AsQueryable();
         }
 
         // GET: api/Suppliers/5

@@ -15,7 +15,7 @@ namespace WebAppJson1.Controllers
             Product apricot = new Product() { Name = "Apricot" };
             Supplier earthfarm = new Supplier() { CompanyName = "Earth Farm", SupplierId = 0, City = "New London", Country = "Luna" };
             // earthfarm.Product = apricot; // create a circular reference
-            apricot.Company = earthfarm;
+            apricot.SupplierName = earthfarm.CompanyName;
             return apricot;
         }
     }

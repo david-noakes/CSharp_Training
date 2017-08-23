@@ -37,5 +37,31 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script>
+        var uri = 'api/suppliers';
+        var $sLC = $('#suppliers');
+        $(document).ready(function () {
+            // select the supplier list container
+            $.getJSON(uri).done(function (data) {
+                // empty the container
+                $sLC.empty();
+                var xs = '';
+                //var zName = data.$values[0].CompanyName;
+                //var zCity = data.$values[0]["City"];
+                //var zCountry = data.$values[0]['Country'];
+                //** data is an object, and $values is the array of suppliers
+                // populate the container with each retrieved row
+                for (var i = 0; i < data.$values.length; i++) {
+                    xs += '<li> Name: ' + data.$values[i].CompanyName +
+                        '; City: ' + data.$values[i].City +
+                        '; Country: ' + data.$values[i].Country + '</li>';
+                };
+                $sLC.append(xs);
+            })
+            .fail(function (xhr, status, error) {
+                $sLC.html('Error: ' + error);
+            });
+        });
+    </script>
 </body>
 </html>
