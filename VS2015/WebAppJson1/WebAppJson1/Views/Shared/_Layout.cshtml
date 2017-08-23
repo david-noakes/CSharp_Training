@@ -37,7 +37,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    <script>
+    @*<script>
         var uri = 'api/suppliers';
         var $sLC = $('#suppliers');
         $(document).ready(function () {
@@ -62,6 +62,62 @@
                 $sLC.html('Error: ' + error);
             });
         });
+    </script>*@
+    @*<script>
+        var uri = 'api/products';
+        // select the product list container
+        var $pC = $('#products');
+        $(document).ready(function () {
+            $.getJSON(uri).done(function (data) {
+                // empty the container
+                $pC.empty();
+                var xs = '';
+                // populate the container with each retrieved row
+                for (var i = 0; i < data.$values.length; i++) {
+                    xs += '<li> Name: ' + data.$values[i].Name +
+                        '; Supplier: ' + data.$values[i].SupplierName + '</li>';
+                };
+                $pC.append(xs);
+            })
+            .fail(function (xhr, status, error) {
+                $pC.html('Error: ' + error);
+            });
+        });
+    </script>*@
+    <script>
+        var url = 'api/products';
+        var xmlhttp;
+        var elem, prodname, suppname
+        // select the product list container
+        var $pC = $('#products');
+        // empty the container
+        $pC.empty();
+        if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+            alert('XMLHttpRequest supported');
+        }
+        else {
+            xmlhttp = new ActiveXObject('Microsoft.XMLHTTP');
+        }
+        if (xmlhttp.overrideMimeType) {
+            xmlhttp.overrideMimeType('text/xml');
+        }
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                elem = xmlhttp.responseXML.documentElement.getElementsByTagName("Product");
+                var xc = '';
+                for (var i = 0; i < elem.length; i++) {
+                    prodname = elem[i].getElementsByTagName("Name");
+                    suppname = elem[i].getElementsByTagName("SupplierName");
+                    xc += '<li> Name: ' + prodname[0].firstChild.nodeValue
+                        + '; Supplier: ' + suppname[0].firstChild.nodeValue
+                        + '</li>';
+                }
+                $pC.append(xc);
+            }
+        }
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
     </script>
 </body>
 </html>

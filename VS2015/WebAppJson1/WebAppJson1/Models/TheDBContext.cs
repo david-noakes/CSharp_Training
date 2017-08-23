@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Web;
 
 namespace WebAppJson1.Models
@@ -39,6 +40,7 @@ namespace WebAppJson1.Models
 
     }
 
+    [DataContract]
     [Table("Product")]
     public class Product
     {
@@ -46,7 +48,10 @@ namespace WebAppJson1.Models
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int ProductId { get; set; }
 
+        [DataMember]
         public string Name { get; set; }
+
+        [DataMember]
         public string SupplierName { get; set; }
     }
 }
