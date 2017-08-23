@@ -55,9 +55,9 @@ namespace WebAppJson1
                 );
             xml.SetSerializer<Product>(myDocs);
             // remove XML formatter
-            //mediaTypeFormatters.Remove(xml);
+            mediaTypeFormatters.Remove(xml);
             // OR remove json for xml
-            mediaTypeFormatters.Remove(json);
+            //mediaTypeFormatters.Remove(json);
 
 
         }

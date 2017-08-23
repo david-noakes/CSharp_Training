@@ -37,7 +37,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    @*<script>
+    <script>
         var uri = 'api/suppliers';
         var $sLC = $('#suppliers');
         $(document).ready(function () {
@@ -62,29 +62,29 @@
                 $sLC.html('Error: ' + error);
             });
         });
-    </script>*@
-    @*<script>
+    </script>
+    <script>
         var uri = 'api/products';
         // select the product list container
         var $pC = $('#products');
         $(document).ready(function () {
-            $.getJSON(uri).done(function (data) {
+            $.getJSON(uri).done(function (proddata) {
                 // empty the container
                 $pC.empty();
-                var xs = '';
+                var ys = '';
                 // populate the container with each retrieved row
-                for (var i = 0; i < data.$values.length; i++) {
-                    xs += '<li> Name: ' + data.$values[i].Name +
-                        '; Supplier: ' + data.$values[i].SupplierName + '</li>';
+                for (var i = 0; i < proddata.$values.length; i++) {
+                    ys += '<li> Name: ' + proddata.$values[i].Name +
+                        '; Supplier: ' + proddata.$values[i].SupplierName + '</li>';
                 };
-                $pC.append(xs);
+                $pC.append(ys);
             })
             .fail(function (xhr, status, error) {
                 $pC.html('Error: ' + error);
             });
         });
-    </script>*@
-    <script>
+    </script>
+    @*<script>
         var url = 'api/products';
         var xmlhttp;
         var elem, prodname, suppname
@@ -118,6 +118,6 @@
         }
         xmlhttp.open("GET", url, true);
         xmlhttp.send();
-    </script>
+    </script>*@
 </body>
 </html>
