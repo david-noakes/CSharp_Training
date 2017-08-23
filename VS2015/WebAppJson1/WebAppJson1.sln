@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppJson1", "WebAppJson1\WebAppJson1.csproj", "{691AD93D-AD2A-48C9-9E1F-944272FB5B5F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{691AD93D-AD2A-48C9-9E1F-944272FB5B5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{691AD93D-AD2A-48C9-9E1F-944272FB5B5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{691AD93D-AD2A-48C9-9E1F-944272FB5B5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{691AD93D-AD2A-48C9-9E1F-944272FB5B5F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
