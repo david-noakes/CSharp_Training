@@ -40,9 +40,13 @@ namespace WebAppJson1
             xml.Indent = true;
 
             // remove XML formatter
-            //mediaTypeFormatters.Remove(xml);
+            mediaTypeFormatters.Remove(xml);
             // OR remove json for xml
-            mediaTypeFormatters.Remove(json);
+            //mediaTypeFormatters.Remove(json);
+
+            // preserve object references when circular references are found
+            json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.All;
+
 
 
         }

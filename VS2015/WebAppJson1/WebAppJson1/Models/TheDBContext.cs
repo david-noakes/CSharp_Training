@@ -19,6 +19,7 @@ namespace WebAppJson1.Models
         }
 
         public DbSet<Supplier> Supplier { get; set; }
+        public DbSet<Supplier> Product { get; set; }
     }
 
     [Table("Supplier")]
@@ -36,5 +37,12 @@ namespace WebAppJson1.Models
         public string Country { get; set; }
 
 
+    }
+
+    [Table("Product")]
+    public class Product
+    {
+        public string Name { get; set; }
+        public Supplier Company { get; set; }
     }
 }
